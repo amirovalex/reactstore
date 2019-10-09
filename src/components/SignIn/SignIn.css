@@ -1,0 +1,57 @@
+.myForm {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width:50%;
+}
+
+div {
+	color: white;
+}
+
+.signbox {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.buttons {
+	display: inline-block;
+}
+
+.logbutt {
+	margin-bottom: 0;
+	margin-top: 10px;
+	width:auto;
+}
+
+.log {
+	width:80%;
+}
+
+.pass {
+	width: 80%;
+}
+
+.flexer {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	width:80%;
+}
+
+p {
+	font-size: 1.2em;
+	margin: 1px;
+}
+
+/*@media only screen and (max-width: 800px) {
+   form {
+    font-size: 0.5rem;
+  }
+  .log , .pass {
+  	font-size:1rem;
+  }
+}
+*/

@@ -1,0 +1,15 @@
+.cartbox {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+}
+
+.tw {
+	color:white;
+	cursor: pointer;
+}
+
+.item {
+	width:80%;
+}

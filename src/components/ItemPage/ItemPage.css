@@ -1,0 +1,11 @@
+.itemflex {
+	display: inline-flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+} 
+
+.buybutt {
+	border:1px solid white;
+	cursor: pointer;
+}
+
