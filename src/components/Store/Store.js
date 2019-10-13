@@ -7,7 +7,7 @@ import 'tachyons';
 import { useMediaQuery } from 'react-responsive'
 
 
-const Store = ({idChange,itemId,route,items,category,filteredItems,categoryChange,onRouteChange,cartAdd,onDropdownMenu,isDropdown}) => {
+const Store = ({onItemIdChange,itemId,route,items,category,filteredItems,onCategoryChange,onRouteChange,onCartAdd,onDropdownMenu,isDropdown}) => {
 const indexItem = items.findIndex(item => item.id === itemId)
 const isTabletOrMobile = useMediaQuery({
     query: '(max-width: 800px)'
@@ -18,7 +18,7 @@ const isTabletOrMobile = useMediaQuery({
 		{route === "itempage" 
 		? 	
 			<ItemPage 
-				cartAdd={cartAdd}
+				onCartAdd={onCartAdd}
 				src={items[indexItem].src}
 				name={items[indexItem].name}
 				price={items[indexItem].price}
@@ -29,15 +29,15 @@ const isTabletOrMobile = useMediaQuery({
 				<div className="sidebar">
 					<ul className="flex flex-column justify-center tc pa3">
 						<li 
-							onClick= {() => categoryChange('accessories')}
+							onClick= {() => onCategoryChange('accessories')}
 							className="grow">Accessories
 						</li>
 						<li 
-							onClick= {() => categoryChange('topwear')}
+							onClick= {() => onCategoryChange('topwear')}
 							className="grow">Topwear
 						</li>
 						<li 
-							onClick= {() => categoryChange('bottomwear')}
+							onClick= {() => onCategoryChange('bottomwear')}
 							className="grow">Bottomwear
 						</li>
 					</ul> 
@@ -53,17 +53,17 @@ const isTabletOrMobile = useMediaQuery({
 						<div className="menubutt tc" onClick={() => onDropdownMenu()}>
 						<p>Menu</p>
 						</div>
-						<ul class="nopadd">
+						<ul className="nopadd">
 						<li 
-							onClick= {() => categoryChange('accessories')}
+							onClick= {() => onCategoryChange('accessories')}
 							className="grow tc">Accessories
 						</li>
 						<li 
-							onClick= {() => categoryChange('topwear')}
+							onClick= {() => onCategoryChange('topwear')}
 							className="grow tc">Topwear
 						</li>
 						<li 
-							onClick= {() => categoryChange('bottomwear')}
+							onClick= {() => onCategoryChange('bottomwear')}
 							className="grow tc">Bottomwear
 						</li>
 						</ul>
@@ -82,7 +82,7 @@ const isTabletOrMobile = useMediaQuery({
 							category={items[i].category}
 							src={items[i].src}
 							onRouteChange={onRouteChange}
-							idChange={idChange}
+							onItemIdChange={onItemIdChange}
 							 />) 
 					})}
 				</div>
@@ -98,7 +98,7 @@ const isTabletOrMobile = useMediaQuery({
 								category={filteredItems[i].category}
 								src={filteredItems[i].src} 
 								onRouteChange={onRouteChange}
-								idChange={idChange}
+								onItemIdChange={onItemIdChange}
 							/>) 
 					})}
 				</div>

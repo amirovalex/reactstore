@@ -1,10 +1,10 @@
 import React from 'react';
 import 'tachyons';
 
-const Item = ({idChange,name,category,id,src,price,onRouteChange}) => {
+const Item = ({onItemIdChange,name,category,id,src,price,onRouteChange}) => {
 	return (
 			<div 
-				onClick={() => {onRouteChange('itempage'); idChange(id)}}
+				onClick={() => {onRouteChange('itempage'); onItemIdChange(id)}}
 				className="tc pv3 flexer grow">
 			<img alt='clothing' width="200px" height="auto" src={src} />
 			<div>

@@ -2,7 +2,7 @@ import React from 'react';
 import 'tachyons';
 import './SignIn.css';
 
-const SignIn = ({onRouteChange,onSignIn}) => {
+const SignIn = ({onRouteChange,onSignIn,onGetUserId}) => {
 	return(
 			<div className="signbox pa3">
 				<form className="myForm signbox pa3 ba white shadow-3">

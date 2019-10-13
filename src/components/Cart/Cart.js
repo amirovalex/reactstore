@@ -5,16 +5,16 @@ import 'tachyons';
 
 
 
-const Cart = ({cart,items,onClearCart,deleteItem}) => {
+const Cart = ({cart,items,onClearCart,onDeleteCartItem}) => {
 	let unique = [...new Set(cart)]
 	return(
 			<div className="cartbox pa3">
 			<div className="item ba pa3 white">
-			{ cart.length === 0 ? <p className="tc">Your Cart is empty.</p> :
+			{ unique.length === 0 ? <p className="tc">Your Cart is empty.</p> :
 				(
 					unique.map((itemId)=> {return( 
 					<CartItem
-					deleteItem={deleteItem}
+					onDeleteCartItem={onDeleteCartItem}
 					unique={unique}
 					cart={cart} 
 					id={itemId}

@@ -1,4 +1,5 @@
 import React , {Component} from 'react';
+import { connect } from 'react-redux';
 import Main from './components/Main/Main'
 import Navbar from './components/Navbar/Navbar';
 import Store from './components/Store/Store';
@@ -6,6 +7,37 @@ import Cart from './components/Cart/Cart';
 import SignIn from './components/SignIn/SignIn';
 import './App.css';
 import Register from './components/Register/Register';
+
+import { routeChange , requestItems , categoryChange , changeItemId , dropMenuDown , logIn , addCart , clearCart , deleteCartItem , getUserId } from './actions';
+
+const mapStateToProps = state => {
+  return {
+    route: state.changeRoute.route,
+    items: state.requestItems.items,
+    category: state.changeCategory.category,
+    itemId: state.idChange.itemId,
+    isDropdown: state.dropdownMenu.isDropdown,
+    isSignedIn: state.signIn.isSignedIn,
+    cart: state.cartAdd.cart,
+    userId: state.userId.userId,
+    isAdmin: state.userId.isAdmin
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onRouteChange: (route) => dispatch(routeChange(route)),
+    onRequestItems: (database) => dispatch(requestItems(database)),
+    onCategoryChange: (category) => dispatch(categoryChange(category)),
+    onItemIdChange: (id) => dispatch(changeItemId(id)),
+    onDropdownMenu: () => dispatch(dropMenuDown()),
+    onSignIn: () => dispatch(logIn()),
+    onCartAdd: (id) => dispatch(addCart(id)),
+    onClearCart: () => dispatch(clearCart()),
+    onDeleteCartItem: (id) => dispatch(deleteCartItem(id)),
+    onGetUserId: (id) => dispatch(getUserId(id))
+  }
+}
  
 const db = [
   {name:"Black Hoodie",
@@ -81,106 +113,61 @@ const db = [
 ]
 
 class App extends Component {
-  constructor() {
-    super();
-    this.storeElement = React.createRef();
-    this.state = {
-      route: 'home',
-      category: 'all',
-      items: [],
-      itemId: '',
-      cart: [],
-      isDropdown:false,
-      isSignedIn:false,
-    }
-}
+
 
   //THE STORE STATE MOVING
   componentDidMount(){
-  this.setState({items:db})
+  this.props.onRequestItems(db)
 }
 
-
-  onRouteChange = (route) => {
-    this.setState({route:route})
-  }
-
-  categoryChange = (category) => {
-    this.setState({category:category})
-  }
-
-  idChange = (id) => {
-    this.setState({itemId:id})
-  }
-
-  cartAdd = (id) => {
-    this.setState({
-      cart:[...this.state.cart,id]
-    })
-  }
-
-  onClearCart = () => {
-    this.setState({cart:[]})
-  }
-
-  onDropdownMenu = () => {
-    this.setState({isDropdown:!this.state.isDropdown})
-  }
-
-  onSignIn= () => {
-    this.setState({isSignedIn:true})
-  }
-
-  deleteItem = i => {
-      this.setState(state => {
-        const cart = this.state.cart.filter((item,j) => i !== j);
-        return {
-          cart,
-        }
-      })
-    }
-
   render(){
-    const { items , category } = this.state
+    const { route, onRouteChange , category ,
+            onCategoryChange , items , itemId ,
+            onItemIdChange ,onDropdownMenu ,isDropdown , 
+            isSignedIn , onSignIn , onCartAdd , 
+            cart , onClearCart , onDeleteCartItem ,
+            onGetUserId , userId , isAdmin} = this.props;
     const filteredItems = items.filter(item => {
-      return (item.category === this.state.category)
+      return (item.category === category)
     })
     return(
       <div style={{height:'100%'}}>
         <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet"/>
         <Navbar 
-          cart={this.state.cart}
-          route={this.state.route} 
-          onRouteChange = {this.onRouteChange} 
-          categoryChange = {this.categoryChange}
+          cart={cart}
+          route={route} 
+          onRouteChange = {onRouteChange} 
+          onCategoryChange = {onCategoryChange}
           toggleCart = {this.toggleCart}
-          isSignedIn = {this.state.isSignedIn} />
-        { this.state.route === "signin" ? 
+          isSignedIn = {isSignedIn}
+          userId = {userId} />
+        { route === "signin" ? 
               <SignIn 
-              onRouteChange = {this.onRouteChange}
-              onSignIn = {this.onSignIn}/>
-            : (this.state.route === "register" ?
+              onRouteChange = {onRouteChange}
+              onSignIn = {onSignIn}
+              onGetUserId = {onGetUserId}/>
+            : (route === "register" ?
               <Register 
-              onRouteChange = {this.onRouteChange}
-              onSignIn = {this.onSignIn}/> :
-        (this.state.route === "cart" ? 
+              onRouteChange = {onRouteChange}
+              onSignIn = {onSignIn}/> :
+        (route === "cart" ? 
           <Cart
-          deleteItem={this.deleteItem}
-          onClearCart={this.onClearCart}
-          cart={this.state.cart}
-          items={items}/>
+          onDeleteCartItem={onDeleteCartItem}
+          onClearCart={onClearCart}
+          cart={cart}
+          items={items} />
           :
-        ( this.state.route === 'home' ?
-          <Main onRouteChange = {this.onRouteChange} categoryChange = {this.categoryChange} />
+        ( route === 'home' ?
+          <Main onRouteChange = {onRouteChange} onCategoryChange = {onCategoryChange} />
        : (    <Store 
-                  isDropdown={this.state.isDropdown}
-                  onDropdownMenu={this.onDropdownMenu}
-                  cartAdd={this.cartAdd}
-                  idChange={this.idChange}
-                  itemId={this.state.itemId}
-                  route={this.state.route}
-                  onRouteChange={this.onRouteChange} 
-                  categoryChange={this.categoryChange} 
+                  isDropdown={isDropdown}
+                  onDropdownMenu={onDropdownMenu}
+                  onCartAdd={onCartAdd}
+                  onItemIdChange={onItemIdChange}
+                  itemId={itemId}
+                  route={route}
+                  onRouteChange={onRouteChange} 
+                  onCategoryChange={onCategoryChange} 
                   items={items} 
                   filteredItems={filteredItems} 
                   category={category} />
@@ -188,10 +175,11 @@ class App extends Component {
           )
           )
         )
-  } {console.log(this.state)}
+  }
       </div>
     )
 }}
 
 
-export default App;
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

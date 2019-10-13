@@ -1,0 +1,10 @@
+export const CHANGE_ROUTE = 'CHANGE_ROUTE';
+export const CATEGORY_CHANGE = 'CATEGORY_CHANGE';
+export const DROPDOWN_MENU = 'DROPDOWN_MENU';
+export const ITEM_ID_CHANGE = 'ITEM_ID_CHANGE';
+export const REQUEST_ITEMS = 'REQUEST_ITEMS';
+export const SIGN_IN = 'SIGN_IN';
+export const CART_ADD = 'CART_ADD';
+export const CLEAR_CART = 'CLEAR_CART';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const GET_USER_ID = 'GET_USER_ID'

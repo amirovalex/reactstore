@@ -2,7 +2,7 @@ import React from 'react';
 import 'tachyons';
 import './ItemPage.css'
 
-const ItemPage = ({src,name,price,itemId,cartAdd}) => {
+const ItemPage = ({src,name,price,itemId,onCartAdd}) => {
 	return (
 			<div className="tc center pa3 itemflex">
 				<img className="" width="40%" alt ="item" src={src}/>
@@ -11,7 +11,7 @@ const ItemPage = ({src,name,price,itemId,cartAdd}) => {
 					<h3>{price+'$'}</h3>
 					<p>Description</p>
 					<div 
-						onClick={() => cartAdd(itemId)}
+						onClick={() => onCartAdd(itemId)}
 						className='white buybutt'>Buy</div>
 				</div>
 			</div>
