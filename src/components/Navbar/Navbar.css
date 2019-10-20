@@ -19,6 +19,35 @@ nav {
 	position:relative;
 }
 
+p {
+	font-family: 'Yanone Kaffeesatz';
+}
+
+.bigDrop {
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height:205%;
+	background-color: black;
+	align-self: flex-start;
+	border:1px solid white;
+	border-top:0px;
+	padding: 0px;
+}
+
+.bigDrop > div {
+	height:100%;
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bigDrop >div:first-child {
+	border-bottom: 1px solid white;
+}
+
 nav > div {
 	padding: 10px;
 	font-size: 1.5rem;
@@ -33,6 +62,7 @@ nav > div {
 }
 
 @media only screen and (max-width: 800px) {
+
 
   .logo {
 	margin-right: 0;
@@ -51,6 +81,17 @@ nav > div {
 
 
 @media only screen and (max-height: 400px) {
+	.bigDrop {
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height:205%;
+	background-color: black;
+	align-self: flex-start;
+	border:1px solid white;
+	border-top:0px;
+	padding: 0px;
+	}
 	nav {
 		height:50px;
 	}

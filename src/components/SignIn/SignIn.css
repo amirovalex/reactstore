@@ -6,9 +6,13 @@
 	width:50%;
 }
 
-div {
+div, input[type="submit"] {
 	color: white;
+	border:0;
 }
+/*input[type="submit"] {
+	border:0;
+}*/
 
 .signbox {
 	display:flex;

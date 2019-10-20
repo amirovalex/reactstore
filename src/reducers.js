@@ -9,8 +9,16 @@ import {
  		 CLEAR_CART ,
  		 DELETE_ITEM ,
  		 OPEN_ADMIN_PANEL ,
- 		 GET_USER_ID
+ 		 GET_USER_ID ,
+ 		 IS_ADMIN ,
+ 		 CART_PRICE_ADD ,
+ 		 CART_PRICE_DELETE ,
+ 		 DROP_SIGN_OUT ,
+ 		 SIGN_OUT ,
+ 		 HIDE_SIGN_OUT ,
+ 		 GRAB_USER_INFO
  		} from './constants.js';
+import {db} from './App.js'
 
 const initialStateRoute = {
       route: 'home',
@@ -85,6 +93,8 @@ export const signIn = (state=initialStateSign,action={}) => {
 	switch(action.type) {
 		case SIGN_IN:
 			return {...state,isSignedIn:true}
+		case SIGN_OUT:
+			return {...state,isSignedIn:false}
 		default:
 			return state;
 	}
@@ -108,8 +118,7 @@ export const cartAdd = (state=initialStateCart,action={}) => {
 }
 
 const initialStateUserId = {
-	userId: '',
-	isAdmin: false
+	userId: ''
 }
 
 export const userId = (state=initialStateUserId,action={}) => {
@@ -120,3 +129,59 @@ export const userId = (state=initialStateUserId,action={}) => {
 			return state;
 	}
 }
+
+const initialStateCartPrice = {
+	cartprice: Number('')
+}
+
+export const cartPrice = (state=initialStateCartPrice,action={}) =>{
+	switch (action.type) {
+		case CART_PRICE_ADD:
+			return {...state,cartprice:state.cartprice + Number(action.payload)}
+		case CART_PRICE_DELETE:
+			return {...state,cartprice:state.cartprice - Number(action.payload)}
+		default:
+			return state;
+	}
+}
+
+const initialStateDropSignOut = {
+	droppedSignOut:false
+}
+
+export const signOut = (state=initialStateDropSignOut,action={}) => {
+	switch(action.type) {
+		case DROP_SIGN_OUT:
+			return {...state,droppedSignOut:true}
+		case HIDE_SIGN_OUT:
+			return {...state,droppedSignOut:false}
+		default:
+			return state;
+	}
+}
+
+const initialStateUser = {
+	user:{	id:'',
+			name:'',
+			email:'',
+			joined:'',
+			isAdmin:false
+		 }
+}
+
+export const userInfo = (state=initialStateUser,action={}) => {
+	switch(action.type) {
+		case GRAB_USER_INFO:
+			return {...state,user:{
+				id:action.payload.id,
+				name:action.payload.name,
+				email:action.payload.email,
+				joined:action.payload.joined,
+				isAdmin:action.payload.isAdmin
+			}}
+		default:
+			return state;
+	}
+}
+
+

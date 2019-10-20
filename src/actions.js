@@ -8,7 +8,13 @@ import {
  		 CART_ADD ,
  		 CLEAR_CART ,
  		 DELETE_ITEM ,
- 		 GET_USER_ID
+ 		 GET_USER_ID ,
+ 		 CART_PRICE_ADD ,
+ 		 CART_PRICE_DELETE ,
+ 		 DROP_SIGN_OUT ,
+ 		 SIGN_OUT ,
+ 		 HIDE_SIGN_OUT ,
+ 		 GRAB_USER_INFO
  		} from './constants.js';
 
 export const routeChange = (text) => ({
@@ -58,6 +64,32 @@ export const getUserId = (id) => ({
 	payload: id
 })
 
+export const addCartPrice = (price) => ({
+	type:CART_PRICE_ADD,
+	payload: price
+})
+
+export const deleteCartPrice = (price) => ({
+	type:CART_PRICE_DELETE,
+	payload: price
+})
+
+export const dropSignedOut = () => ({
+	type:DROP_SIGN_OUT
+})
+
+export const hideSignOut = () => ({
+	type:HIDE_SIGN_OUT
+})
+
+export const signOut = () => ({
+	type:SIGN_OUT
+})
+
+export const getUserInfo = (user) => ({
+	type:GRAB_USER_INFO,
+	payload: user
+})
 // export const toAdmin = () => ({
 // 	type: 
 // })

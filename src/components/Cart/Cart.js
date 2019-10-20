@@ -5,8 +5,18 @@ import 'tachyons';
 
 
 
-const Cart = ({cart,items,onClearCart,onDeleteCartItem}) => {
+const Cart = ({cart,items,onClearCart,onDeleteCartItem,onCartPriceDelete,cartprice}) => {
 	let unique = [...new Set(cart)]
+	// function handleToken(token) {
+	// 	fetch('localhost:3000/checkout', {
+	// 		method:'post',
+	// 		body: {
+	// 			""
+	// 		}
+	// 	})
+	// 	console.log({token,adresses})
+	// }
+
 	return(
 			<div className="cartbox pa3">
 			<div className="item ba pa3 white">
@@ -22,6 +32,7 @@ const Cart = ({cart,items,onClearCart,onDeleteCartItem}) => {
 					src={items.find(x => x.id === itemId).src}
 					name={items.find(x => x.id === itemId).name}
 					price={items.find(x => x.id === itemId).price}
+					onCartPriceDelete={onCartPriceDelete}
 			/>)}))}
 			</div>
 				<div className="buttonbox pa3">

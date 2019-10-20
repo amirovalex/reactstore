@@ -62,14 +62,14 @@ body {
 	position: relative;
 	width: 150%;
 	grid-row: 1;
-	clip-path: polygon(4% 0%, 100% 0, 100% 100%, 46% 100%, 38% 82%, 31% 64%, 26% 51%, 16% 28%);
+	clip-path: polygon(4% 0%, 100% 0%, 100% 100%, 91% 99%, 80% 100%, 73% 98%, 62% 99%, 47% 100%,42% 85%,28% 55%, 1% -7%);
 	justify-self: end;
 }
 
 .rightlow {
 	display:flex;
 	align-items: center;
-	clip-path: polygon(48% 2%, 100% 2%, 100% 100%, 7% 100%, 14% 81%, 19% 70%, 25% 51% , 41% 34%,52% 24%);
+	clip-path: polygon(93% 2%, 100% 2%, 100% 100%, 7% 100%, 14% 81%, 19% 70%, 25% 51% , 41% 34%,53% 23%,49% 6%,71% 2%,73% 2%,80% 7%);
 	position: relative;
 	width: 150%;
 	grid-row: 2;

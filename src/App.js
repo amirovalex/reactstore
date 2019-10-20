@@ -7,8 +7,7 @@ import Cart from './components/Cart/Cart';
 import SignIn from './components/SignIn/SignIn';
 import './App.css';
 import Register from './components/Register/Register';
-
-import { routeChange , requestItems , categoryChange , changeItemId , dropMenuDown , logIn , addCart , clearCart , deleteCartItem , getUserId } from './actions';
+import { routeChange , requestItems , categoryChange , changeItemId , dropMenuDown , logIn , addCart , clearCart , deleteCartItem , getUserId , addCartPrice , deleteCartPrice , dropSignedOut , signOut , hideSignOut , getUserInfo } from './actions';
 
 const mapStateToProps = state => {
   return {
@@ -20,7 +19,9 @@ const mapStateToProps = state => {
     isSignedIn: state.signIn.isSignedIn,
     cart: state.cartAdd.cart,
     userId: state.userId.userId,
-    isAdmin: state.userId.isAdmin
+    cartprice: state.cartPrice.cartprice,
+    droppedSignOut: state.signOut.droppedSignOut,
+    user: state.userInfo.user
   }
 }
 
@@ -35,7 +36,13 @@ const mapDispatchToProps = (dispatch) => {
     onCartAdd: (id) => dispatch(addCart(id)),
     onClearCart: () => dispatch(clearCart()),
     onDeleteCartItem: (id) => dispatch(deleteCartItem(id)),
-    onGetUserId: (id) => dispatch(getUserId(id))
+    onGetUserId: (id) => dispatch(getUserId(id)),
+    onCartPriceAdd: (price) => dispatch(addCartPrice(price)),
+    onCartPriceDelete: (price) => dispatch(deleteCartPrice(price)),
+    onDropSignOut: () => dispatch(dropSignedOut()),
+    onSignOut: () => dispatch(signOut()),
+    onHideSignOut: () => dispatch(hideSignOut()),
+    onGetUserInfo: (user) => dispatch(getUserInfo(user))
   }
 }
  
@@ -120,13 +127,17 @@ class App extends Component {
   this.props.onRequestItems(db)
 }
 
+
   render(){
     const { route, onRouteChange , category ,
             onCategoryChange , items , itemId ,
             onItemIdChange ,onDropdownMenu ,isDropdown , 
             isSignedIn , onSignIn , onCartAdd , 
             cart , onClearCart , onDeleteCartItem ,
-            onGetUserId , userId , isAdmin} = this.props;
+            onGetUserId , userId , isAdmin ,
+            cartprice , onCartPriceAdd , onCartPriceDelete ,
+            onDropSignOut , droppedSignOut , onSignOut ,
+            onHideSignOut , onGetUserInfo , user} = this.props;
     const filteredItems = items.filter(item => {
       return (item.category === category)
     })
@@ -140,22 +151,34 @@ class App extends Component {
           onCategoryChange = {onCategoryChange}
           toggleCart = {this.toggleCart}
           isSignedIn = {isSignedIn}
-          userId = {userId} />
+          isAdmin = {isAdmin}
+          droppedSignOut = {droppedSignOut}
+          onDropSignOut = {onDropSignOut}
+          onSignOut = {onSignOut} 
+          onHideSignOut ={onHideSignOut}
+          user = {user} />
         { route === "signin" ? 
               <SignIn 
               onRouteChange = {onRouteChange}
               onSignIn = {onSignIn}
-              onGetUserId = {onGetUserId}/>
+              onGetUserId = {onGetUserId}
+              onGetUserInfo = {onGetUserInfo}
+              db = {db}/>
             : (route === "register" ?
               <Register 
+              onGetUserInfo = {onGetUserInfo}
               onRouteChange = {onRouteChange}
               onSignIn = {onSignIn}/> :
         (route === "cart" ? 
-          <Cart
+          (<Cart
           onDeleteCartItem={onDeleteCartItem}
           onClearCart={onClearCart}
           cart={cart}
-          items={items} />
+          items={items}
+          cartprice={cartprice}
+          onCartPriceDelete={onCartPriceDelete}
+          />
+          )
           :
         ( route === 'home' ?
           <Main onRouteChange = {onRouteChange} onCategoryChange = {onCategoryChange} />
@@ -170,7 +193,9 @@ class App extends Component {
                   onCategoryChange={onCategoryChange} 
                   items={items} 
                   filteredItems={filteredItems} 
-                  category={category} />
+                  category={category}
+                  onCartPriceAdd={onCartPriceAdd}
+                   />
           )
           )
           )
@@ -179,7 +204,5 @@ class App extends Component {
       </div>
     )
 }}
-
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

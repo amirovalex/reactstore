@@ -7,7 +7,7 @@ import 'tachyons';
 import { useMediaQuery } from 'react-responsive'
 
 
-const Store = ({onItemIdChange,itemId,route,items,category,filteredItems,onCategoryChange,onRouteChange,onCartAdd,onDropdownMenu,isDropdown}) => {
+const Store = ({onItemIdChange,itemId,route,items,category,filteredItems,onCategoryChange,onRouteChange,onCartAdd,onDropdownMenu,isDropdown,onCartPriceAdd}) => {
 const indexItem = items.findIndex(item => item.id === itemId)
 const isTabletOrMobile = useMediaQuery({
     query: '(max-width: 800px)'
@@ -23,6 +23,8 @@ const isTabletOrMobile = useMediaQuery({
 				name={items[indexItem].name}
 				price={items[indexItem].price}
 				itemId={itemId}
+				onCartPriceAdd={onCartPriceAdd}
+				items={items}
 			/>
 		:
 			(<div className="grid">

@@ -2,7 +2,7 @@ import React from 'react';
 import 'tachyons';
 import './CartItem.css'
 
-const CartItem = ({src,name,price,cart,unique,id,onDeleteCartItem}) => {
+const CartItem = ({src,name,price,cart,unique,id,onDeleteCartItem,onCartPriceDelete}) => {
 	let deleteIndex = unique.indexOf(id)
 
 		let count = 0;
@@ -19,7 +19,7 @@ const CartItem = ({src,name,price,cart,unique,id,onDeleteCartItem}) => {
 				height="100%" 
 				alt="item" src={src}/>
 			<p>{name}</p>
-			<p onClick = {() => onDeleteCartItem(deleteIndex)} className='self'>[X]</p>
+			<p onClick = {() => {onDeleteCartItem(deleteIndex);onCartPriceDelete(price)}} className='self'>[X]</p>
 			<p>Quantity : {count}</p>
 			<p>Price : {Number(price)*count+'$'}</p>
 		</div>

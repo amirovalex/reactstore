@@ -7,12 +7,12 @@ import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import 'tachyons';
 import App from './App';
-import { changeRoute , requestItems , idChange , dropdownMenu , changeCategory , signIn , cartAdd , userId } from './reducers.js'
+import { changeRoute , requestItems , idChange , dropdownMenu , changeCategory , signIn , cartAdd , userId , cartPrice , signOut , userInfo } from './reducers.js'
 import * as serviceWorker from './serviceWorker';
 
 const logger = createLogger();
 
-const rootReducer = combineReducers({changeRoute,requestItems,idChange,dropdownMenu,changeCategory ,signIn , cartAdd , userId })
+const rootReducer = combineReducers({changeRoute,requestItems,idChange,dropdownMenu,changeCategory ,signIn , cartAdd , userId , cartPrice , signOut , userInfo })
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger))
 
