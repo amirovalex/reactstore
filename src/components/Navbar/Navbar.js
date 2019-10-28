@@ -2,7 +2,7 @@ import React from 'react';
 import './Navbar.css';
 import 'tachyons';
 
-const Navigation = ({onRouteChange,route,onCategoryChange,cart,isSignedIn,user,isAdmin,onDropSignOut,droppedSignOut,onSignOut,onHideSignOut}) => {
+const Navigation = ({onRouteChange,route,onCategoryChange,cart,isSignedIn,user,isAdmin,onDropSignOut,droppedSignOut,onSignOut,onHideSignOut,onChangeAdminRoute}) => {
 	return (
 			<nav className={route==='home' ? "fixed shadow-1" : "relative shadow-1"}>
 				<link href="https://fonts.googleapis.com/css?family=Grenze&display=swap" rel="stylesheet"/>
@@ -28,19 +28,19 @@ const Navigation = ({onRouteChange,route,onCategoryChange,cart,isSignedIn,user,i
 							(droppedSignOut === false ?
 						<div 
 							onMouseEnter = {() => onDropSignOut()}
-							onMouseLeave = {() => onHideSignOut()}><p className="grow">Hi,{user.name}</p>
+							onMouseLeave = {() => onHideSignOut()}><p className="grow fonted">Hi,{user.name}</p>
 						</div>
 							:
 							(
 								<div className="bigDrop">
 						<div 
 							onMouseEnter = {() => onDropSignOut()}
-							onMouseLeave = {() => onHideSignOut()}><p className="grow">Hi,{user.name}</p>
+							onMouseLeave = {() => onHideSignOut()}><p className="grow fonted">Hi,{user.name}</p>
 						</div>
 						<div 
 							onMouseEnter = {() => onDropSignOut()}
 							onMouseLeave = {() => onHideSignOut()}
-							onClick = {() => {onHideSignOut();onSignOut()}}><p className="grow">Sign Out</p>
+							onClick = {() => {onHideSignOut();onSignOut()}}><p className="grow fonted">Sign Out</p>
 						</div>
 								</div>
 							)
@@ -49,19 +49,24 @@ const Navigation = ({onRouteChange,route,onCategoryChange,cart,isSignedIn,user,i
 							(droppedSignOut === false ?
 						<div
 							onMouseEnter = {() => onDropSignOut()}
-							onMouseLeave = {() => onHideSignOut()}><p className="grow">Hi,Admin</p>
+							onMouseLeave = {() => onHideSignOut()}><p className="grow fonted">Hi,Admin</p>
 						</div>
 						:
 						(
-							<div className="bigDrop">
+							<div className="bigDrop admin">
 						<div 
 							onMouseEnter = {() => onDropSignOut()}
-							onMouseLeave = {() => onHideSignOut()}><p className="grow">Hi,Admin</p>
+							onMouseLeave = {() => onHideSignOut()}><p className="grow fonted">Hi,Admin</p>
 						</div>
 						<div 
 							onMouseEnter = {() => onDropSignOut()}
 							onMouseLeave = {() => onHideSignOut()}
-							onClick ={() => {onHideSignOut();onSignOut()}}><p className="grow">SignOut</p>
+							onClick = {() => {onRouteChange('admin');onChangeAdminRoute('admin')}}><p className="grow fonted">Admin Panel</p>
+						</div>
+						<div 
+							onMouseEnter = {() => onDropSignOut()}
+							onMouseLeave = {() => onHideSignOut()}
+							onClick ={() => {onHideSignOut();onSignOut()}}><p className="grow fonted">Sign Out</p>
 						</div>
 							</div>)
 							)

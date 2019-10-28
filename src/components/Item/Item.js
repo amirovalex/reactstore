@@ -3,9 +3,8 @@ import 'tachyons';
 
 const Item = ({onItemIdChange,name,category,id,src,price,onRouteChange}) => {
 	return (
-			<div 
-				onClick={() => {onRouteChange('itempage'); onItemIdChange(id)}}
-				className="tc pv3 flexer grow">
+			<div
+				className="tc pv3 center flexer grow">
 			<img alt='clothing' width="200px" height="auto" src={src} />
 			<div>
 				<h3>{name}</h3>

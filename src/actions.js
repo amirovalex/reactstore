@@ -14,7 +14,18 @@ import {
  		 DROP_SIGN_OUT ,
  		 SIGN_OUT ,
  		 HIDE_SIGN_OUT ,
- 		 GRAB_USER_INFO
+ 		 GRAB_USER_INFO ,
+ 		 CHANGE_ADMIN_ROUTE ,
+ 		 GRAB_ITEM_QUANTITY ,
+ 		 EDIT_ITEM_STORAGE ,
+ 		 CANCEL_EDIT_ITEM ,
+ 		 GRAB_ITEM_IMAGE ,
+ 		 ITEM_QUANTITY_XS_CHANGE ,
+ 		 ITEM_QUANTITY_S_CHANGE ,
+ 		 ITEM_QUANTITY_M_CHANGE ,
+ 		 ITEM_QUANTITY_L_CHANGE ,
+ 		 ITEM_QUANTITY_XL_CHANGE ,
+ 		 ITEM_IMAGE_CHANGE
  		} from './constants.js';
 
 export const routeChange = (text) => ({
@@ -90,6 +101,56 @@ export const getUserInfo = (user) => ({
 	type:GRAB_USER_INFO,
 	payload: user
 })
+
+export const changeAdminRoute = (route) => ({
+	type:CHANGE_ADMIN_ROUTE,
+	payload:route
+})
+
+export const getItemQuantity = (item) => ({
+	type:GRAB_ITEM_QUANTITY,
+	payload:item
+})
+
+export const editQuantityXs = (obj) => ({
+	type:ITEM_QUANTITY_XS_CHANGE,
+	payload:obj
+})
+
+export const editQuantityS = (obj) => ({
+	type:ITEM_QUANTITY_S_CHANGE,
+	payload:obj
+})
+
+export const editQuantityM = (obj) => ({
+	type:ITEM_QUANTITY_M_CHANGE,
+	payload:obj
+})
+
+export const editQuantityL = (obj) => ({
+	type:ITEM_QUANTITY_L_CHANGE,
+	payload:obj
+})
+
+export const editQuantityXl = (obj) => ({
+	type:ITEM_QUANTITY_XL_CHANGE,
+	payload:obj
+})
+
+export const editItemImage = (obj) => ({
+	type:ITEM_IMAGE_CHANGE,
+	payload:obj
+})
+
+export const itemEdit = () => ({
+	type:EDIT_ITEM_STORAGE
+})
+
+export const cancelEdit = () => ({
+	type:CANCEL_EDIT_ITEM
+})
+
+
 // export const toAdmin = () => ({
 // 	type: 
 // })

@@ -40,7 +40,7 @@ class SignIn extends React.Component {
 
 
 	render() {
-		const { onRouteChange,onSignIn,onGetUserInfo,db } = this.props
+		const { onRouteChange } = this.props
 		return(
 			<div className="signbox pa3">
 				<div className="myForm signbox pa3 ba white shadow-3">

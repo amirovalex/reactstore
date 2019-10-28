@@ -5,9 +5,10 @@ import Navbar from './components/Navbar/Navbar';
 import Store from './components/Store/Store';
 import Cart from './components/Cart/Cart';
 import SignIn from './components/SignIn/SignIn';
+import Admin from './components/Admin/Admin'
 import './App.css';
 import Register from './components/Register/Register';
-import { routeChange , requestItems , categoryChange , changeItemId , dropMenuDown , logIn , addCart , clearCart , deleteCartItem , getUserId , addCartPrice , deleteCartPrice , dropSignedOut , signOut , hideSignOut , getUserInfo } from './actions';
+import { routeChange , requestItems , categoryChange , changeItemId , dropMenuDown , logIn , addCart , clearCart , deleteCartItem , getUserId , addCartPrice , deleteCartPrice , dropSignedOut , signOut , hideSignOut , getUserInfo , changeAdminRoute , getItemQuantity , itemEdit , cancelEdit , editQuantityXs , editQuantityS , editQuantityM , editQuantityL , editQuantityXl , editItemImage } from './actions';
 
 const mapStateToProps = state => {
   return {
@@ -21,7 +22,11 @@ const mapStateToProps = state => {
     userId: state.userId.userId,
     cartprice: state.cartPrice.cartprice,
     droppedSignOut: state.signOut.droppedSignOut,
-    user: state.userInfo.user
+    user: state.userInfo.user,
+    adminRoute: state.adminRouter.adminRoute,
+    image: state.itemQuantity.image,
+    quantity: state.itemQuantity.quantity,
+    isEditing: state.editItem.isEditing
   }
 }
 
@@ -42,89 +47,28 @@ const mapDispatchToProps = (dispatch) => {
     onDropSignOut: () => dispatch(dropSignedOut()),
     onSignOut: () => dispatch(signOut()),
     onHideSignOut: () => dispatch(hideSignOut()),
-    onGetUserInfo: (user) => dispatch(getUserInfo(user))
+    onGetUserInfo: (user) => dispatch(getUserInfo(user)),
+    onChangeAdminRoute: (route) => dispatch(changeAdminRoute(route)),
+    onGetItemQuantity: (item) => dispatch(getItemQuantity(item)),
+    onItemEdit: () => dispatch(itemEdit()),
+    onCancelEdit: () => (dispatch(cancelEdit())),
+    onEditQuantityXs: (obj) => (dispatch(editQuantityXs(obj))),
+    onEditQuantityS: (obj) => (dispatch(editQuantityS(obj))),
+    onEditQuantityM: (obj) => (dispatch(editQuantityM(obj))),
+    onEditQuantityL: (obj) => (dispatch(editQuantityL(obj))),
+    onEditQuantityXl: (obj) => (dispatch(editQuantityXl(obj))),
+    onEditItemImage: (obj) => (dispatch(editItemImage(obj)))
   }
 }
- 
-const db = [
-  {name:"Black Hoodie",
-    price:"120",
-    category:"topwear",
-    id:"1",
-    src:"https://cdn.rickowens.eu/products/69433/large/DU19F6285FEP8_09_M_2.jpg?1568643377",
-    color:"black"
-  },
-  {name:"Black Printed T-Shirt",
-    price:"90",
-    category:"topwear",
-    id:"2",
-    src:"https://media.yoox.biz/items/12/12309386jw_14g_f.jpg",
-    color:"black"
-  },
-  {name:"White Shirt",
-    price:"80",
-    category:"topwear",
-    id:"3",
-    src:"https://media.yoox.biz/items/38/38854637hr_14_r.jpg",
-    color:"white"
-  },
-  {name:"Leather Pants",
-    price:"200",
-    category:"bottomwear",
-    id:"4",
-    src:"https://cdn.rickowens.eu/products/63433/large/RU19F4392LS09_48_1.jpg?1557493178",
-    color:"black"
-  },
-  {name:"Sport Shorts",
-    price:"70",
-    category:"bottomwear",
-    id:"5",
-    src:"https://i.pinimg.com/originals/e0/9d/73/e09d738579b13bd62a0f01bde4e7a634.jpg",
-    color:"black"
-  },
-  {name:"Cargo Pants",
-    price:"150",
-    category:"bottomwear",
-    id:"6",
-    src:"https://cdn.rickowens.eu/products/68037/large/RU19F4396TE_133-46-1.jpg?1563806617",
-    color:"black"
-  },
-  {name:"Cargo Shorts",
-    price:"80",
-    category:"bottomwear",
-    id:"7",
-    src:"https://cdn.rickowens.eu/products/69115/large/DU19F6386RIG03_S_1.jpg?1566295209",
-    color:"black"
-  },
-  {name:"Logo Cap",
-    price:"40",
-    category:"accessories",
-    id:"8",
-    src:"https://media.yoox.biz/items/46/46644729fa_14g_f.jpg",
-    color:"black"
-  },
-  {name:"Silver Necklace",
-    price:"150",
-    category:"accessories",
-    id:"9",
-    src:"https://media.yoox.biz/items/50/50232285ox_29_e.jpg",
-    color:"black"
-  },
-  {name:"Black Backpack",
-    price:"80",
-    category:"accessories",
-    id:"10",
-    src:"https://media.yoox.biz/items/45/45461845bt_14g_f.jpg",
-    color:"black"
-  },
-]
 
 class App extends Component {
 
 
   //THE STORE STATE MOVING
-  componentDidMount(){
-  this.props.onRequestItems(db)
+  componentDidMount() {
+  fetch('http://localhost:3000/getstorage')
+    .then(response => response.json())
+    .then(items => this.props.onRequestItems(items))
 }
 
 
@@ -134,10 +78,15 @@ class App extends Component {
             onItemIdChange ,onDropdownMenu ,isDropdown , 
             isSignedIn , onSignIn , onCartAdd , 
             cart , onClearCart , onDeleteCartItem ,
-            onGetUserId , userId , isAdmin ,
+            onGetUserId , isAdmin ,
             cartprice , onCartPriceAdd , onCartPriceDelete ,
             onDropSignOut , droppedSignOut , onSignOut ,
-            onHideSignOut , onGetUserInfo , user} = this.props;
+            onHideSignOut , onGetUserInfo , user ,
+            adminRoute , onChangeAdminRoute , quantity ,
+            onGetItemQuantity , isEditing , onItemEdit ,
+            onCancelEdit , image , onEditQuantityXs , 
+            onEditQuantityS , onEditQuantityM , onEditQuantityL ,
+            onEditQuantityXl , onEditItemImage } = this.props;
     const filteredItems = items.filter(item => {
       return (item.category === category)
     })
@@ -156,14 +105,34 @@ class App extends Component {
           onDropSignOut = {onDropSignOut}
           onSignOut = {onSignOut} 
           onHideSignOut ={onHideSignOut}
+          onChangeAdminRoute={onChangeAdminRoute}
           user = {user} />
-        { route === "signin" ? 
+          {route === 'admin' ?
+            <Admin 
+            onEditQuantityXs = {onEditQuantityXs}
+            onEditQuantityS = {onEditQuantityS}
+            onEditQuantityM = {onEditQuantityM}
+            onEditQuantityL = {onEditQuantityL}
+            onEditQuantityXl = {onEditQuantityXl}
+            onEditItemImage = {onEditItemImage}
+            isEditing={isEditing}
+            onItemEdit={onItemEdit}
+            onItemIdChange={onItemIdChange}
+            itemId={itemId}
+            adminRoute={adminRoute}
+            onChangeAdminRoute={onChangeAdminRoute}
+            quantity={quantity}
+            onGetItemQuantity={onGetItemQuantity}
+            onCancelEdit={onCancelEdit}
+            image={image}
+            /> :
+            ( route === "signin" ? 
               <SignIn 
               onRouteChange = {onRouteChange}
               onSignIn = {onSignIn}
               onGetUserId = {onGetUserId}
               onGetUserInfo = {onGetUserInfo}
-              db = {db}/>
+              />
             : (route === "register" ?
               <Register 
               onGetUserInfo = {onGetUserInfo}
@@ -182,7 +151,7 @@ class App extends Component {
           :
         ( route === 'home' ?
           <Main onRouteChange = {onRouteChange} onCategoryChange = {onCategoryChange} />
-       : (    <Store 
+       : (    route === 'store' ? (<Store 
                   isDropdown={isDropdown}
                   onDropdownMenu={onDropdownMenu}
                   onCartAdd={onCartAdd}
@@ -195,12 +164,26 @@ class App extends Component {
                   filteredItems={filteredItems} 
                   category={category}
                   onCartPriceAdd={onCartPriceAdd}
-                   />
+                   />)
+            : (route === 'itempage' ? (<Store 
+                  isDropdown={isDropdown}
+                  onDropdownMenu={onDropdownMenu}
+                  onCartAdd={onCartAdd}
+                  onItemIdChange={onItemIdChange}
+                  itemId={itemId}
+                  route={route}
+                  onRouteChange={onRouteChange} 
+                  onCategoryChange={onCategoryChange} 
+                  items={items} 
+                  filteredItems={filteredItems} 
+                  category={category}
+                  onCartPriceAdd={onCartPriceAdd}
+                   />) : true )
           )
           )
           )
         )
-  }
+      )}  
       </div>
     )
 }}

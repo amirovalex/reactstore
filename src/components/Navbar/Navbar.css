@@ -6,9 +6,8 @@ nav {
 	justify-content: center;
 	align-items: center;
 	border-bottom: 1px solid white;
-	height: 40px;
 	align-self: flex-start;
-	height:60px;
+	height:8%;
 }
 .fixed {
 	position: fixed;
@@ -35,6 +34,10 @@ p {
 	padding: 0px;
 }
 
+.admin {
+	height:305%;
+}
+
 .bigDrop > div {
 	height:100%;
 	width: 100%;
@@ -56,6 +59,11 @@ nav > div {
 	font-family: 'Grenze', serif;
 }
 
+.fonted {
+	font-family: 'Grenze', serif;
+	font-size: 1.5rem;
+}
+
 .logo {
 	margin-right:auto;
 	border-left: 0;
@@ -71,6 +79,11 @@ nav > div {
   	position: fixed;
   	z-index: 1;
   }
+
+  .fonted {
+  	font-size: 1.2rem
+  }
+  
   nav > div {
     padding: 2px;
     padding-left: 10px;
@@ -93,10 +106,18 @@ nav > div {
 	padding: 0px;
 	}
 	nav {
-		height:50px;
+		height:12%;
 	}
 	nav > div {
 		font-size: 1rem;
 		padding-top: 5px;
+	}
+
+	.fonted {
+		font-size: 1rem;
+	}
+
+	.admin {
+		height:305%;
 	}
 }

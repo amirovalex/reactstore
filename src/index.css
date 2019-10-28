@@ -9,6 +9,13 @@ body {
 }
 
 
+#root {
+	height:100%;
+}
+
+nav {
+	z-index: 1;
+}
 
 
 code {
