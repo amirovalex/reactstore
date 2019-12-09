@@ -42,7 +42,7 @@ class SignIn extends React.Component {
 		console.log(this.props)
 		const { onRouteChange } = this.props
 		return(
-			<div className="signbox pa3">
+			<div className="phoneScreen center tc signbox pa3">
 				<div className="myForm signbox pa3 ba white shadow-3">
 					<p className="f3 pv2">Sign In:</p>
 					<div className="flexer pv1"><p>Email:</p>
@@ -53,7 +53,7 @@ class SignIn extends React.Component {
 						<input 
 							onChange={this.onPasswordChange}
 							className="pass" type="password" maxLength='16' name="password" /></div>
-					<div className="buttons">
+					<div className="buttons tc">
 					<input type='submit' onClick={() => this.onSubmitSignIn()}className="hover-bg-white-20 pointer pa2 logbutt mh1 f6 link ph3 pv2 mb2 dib white bg-black" value='Login'/>
 					<div onClick={() => {onRouteChange('register');this.props.history.push('/register')}}className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Register</div>
 					</div>

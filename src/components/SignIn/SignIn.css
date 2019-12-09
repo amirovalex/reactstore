@@ -3,9 +3,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width:50%;
+	width: 50%;
 }
-
 div, input[type="submit"] {
 	color: white;
 	border:0;
@@ -50,12 +49,13 @@ p {
 	margin: 1px;
 }
 
-/*@media only screen and (max-width: 800px) {
-   form {
-    font-size: 0.5rem;
-  }
-  .log , .pass {
-  	font-size:1rem;
-  }
+@media only screen and (max-width: 800px) {
+.phoneScreen{
+	font-size: 0.5em;
 }
-*/
+div.myForm {
+	width: 90%;
+	height:100%;
+}
+}
+

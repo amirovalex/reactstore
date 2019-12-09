@@ -50,7 +50,7 @@ class Register extends React.Component {
 	render() {
 		const { onRouteChange } = this.props;
 			return(
-			<div className="signbox pa3">
+			<div className="phoneScreen signbox pa3">
 				<div className="myForm signbox pa3 ba white shadow-3">
 					<p className="f3 pv2">Register:</p>
 					<div className="flexer pv1"><p>Name:</p>
