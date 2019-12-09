@@ -49,9 +49,9 @@ p {
 	margin: 1px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1080px) {
 .phoneScreen{
-	font-size: 0.5em;
+	font-size: 1rem;
 }
 div.myForm {
 	width: 90%;

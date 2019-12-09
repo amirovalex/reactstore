@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navbar3.css';
 import 'tachyons';
+import MediaQuery from 'react-responsive';
 
 class Navbar extends React.Component {
 
@@ -52,7 +53,26 @@ class Navbar extends React.Component {
 								</div>
 								)
 								:
-								(<div className="part3 part4 hover-bg-white-20"
+								(
+									<div><MediaQuery maxWidth={800}>
+										<div className="part3 part4 hover-bg-white-20"
+										onClick={() => onDropSignOut()}
+										onMouseLeave={() => onHideSignOut()}
+										onMouseEnter={() => onDropSignOut()}>
+
+										<span href="#" className="hiAdmin">Hi,Admin</span>
+										<div className="dropDown" style={{display: droppedSignOut ? 'flex' : 'none'}}>
+											<div className = "bord hover-bg-white-40" onClick = {() => {onRouteChange('admin');onChangeAdminRoute('admin');this.props.history.push('/admin')}}><span href="#">Admin Panel
+												</span>
+											</div>
+											<div className = "hover-bg-white-40" onClick = {() => {onSignOut();this.props.history.push('/');onUserReset();onClearCart()}}><span href="">Sign Out
+												</span>
+											</div>
+										</div>
+									</div>
+									</MediaQuery>
+									<MediaQuery minWidth={800}>
+									<div className="part3 part4 hover-bg-white-20"
 									onMouseEnter={() => onDropSignOut()}
 									onMouseLeave={() => onHideSignOut()}>
 									<span href="#" className="hiAdmin">Hi,Admin</span>
@@ -64,6 +84,8 @@ class Navbar extends React.Component {
 											</span>
 										</div>
 									</div>
+								</div>
+								</MediaQuery>
 								</div>
 							)		
 						)
