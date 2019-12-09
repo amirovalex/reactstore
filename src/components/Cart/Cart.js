@@ -5,34 +5,28 @@ import 'tachyons';
 import StripeCheckoutButton from '../StripeButton/StripeButton';
 
 
+const Cart = ({cart,items,onClearCart,onDeleteCartItem,onCartPriceDelete,cartprice,user,quantity}) => {
 
-const Cart = ({cart,items,onClearCart,onDeleteCartItem,onCartPriceDelete,cartprice}) => {
-	let unique = [...new Set(cart)]
-	// function handleToken(token) {
-	// 	fetch('localhost:3000/checkout', {
-	// 		method:'post',
-	// 		body: {
-	// 			""
-	// 		}
-	// 	})
-	// 	console.log({token,adresses})
-	// }
 
 	return(
 			<div className="cartbox pa3">
 			<div className="item ba pa3 white">
-			{ unique.length === 0 ? <p className="tc">Your Cart is empty.</p> :
+			{ cart.length === 0 ? <p className="tc">Your Cart is empty.</p> :
 				(<div>
-					{unique.map((itemId)=> {return( 
+					{
+					cart.map((item)=> {return( 
 					<CartItem
 					onDeleteCartItem={onDeleteCartItem}
-					unique={unique}
-					cart={cart} 
-					id={itemId}
-					key={itemId}
-					src={items.find(x => x.itemid === itemId).itemimage}
-					name={items.find(x => x.itemid === itemId).itemname}
-					price={items.find(x => x.itemid === itemId).price}
+					unique={cart}
+					cart={cart}
+					size={item.itemsize}
+					item={item} 
+					id={item.itemid}
+					key={item.itemid}
+					quantity={item.quantity}
+					src={items.find(x => x.itemid === item.itemid).itemimage}
+					name={items.find(x => x.itemid === item.itemid).itemname}
+					price={items.find(x => x.itemid === item.itemid).price}
 					onCartPriceDelete={onCartPriceDelete}
 			/>)})}
 					<p>Total: {cartprice} </p>
@@ -41,6 +35,8 @@ const Cart = ({cart,items,onClearCart,onDeleteCartItem,onCartPriceDelete,cartpri
 				<div className="buttonbox pa3 center">
 					<div className="tw tc" onClick={() => onClearCart()}><p>Cancel Order</p></div>
 					<StripeCheckoutButton
+						cart={cart}
+						user={user}
 						price={cartprice}
 						className="center"
 					/>
@@ -53,5 +49,6 @@ const Cart = ({cart,items,onClearCart,onDeleteCartItem,onCartPriceDelete,cartpri
 			</div>
 		)
 }
+
 
 export default Cart;

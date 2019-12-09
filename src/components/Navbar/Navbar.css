@@ -1,4 +1,45 @@
-nav {
+.menu-area {
+	background: black;
+	width: 100%;
+	z-index: 2;
+}
+.menu-area div{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	background: black;
+	height:50px;
+	text-decoration: none;
+}
+
+.menu-area ul {
+	list-style: none;
+	display: flex;
+}
+
+.menu-area ul li{
+	position: relative;
+	width:100%;
+	text-align: center;
+}
+
+.menu-area li:hover .bigDrop li {
+	top:0;
+	display: block
+}
+
+.bigDrop ul li {
+	display: none;
+	position: relative;
+}
+
+.bigDrop {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width:100%;
+}
+/*.nav {
 	width:100%;
 	background-color: black;
 	display: inline-flex;
@@ -6,8 +47,12 @@ nav {
 	justify-content: center;
 	align-items: center;
 	border-bottom: 1px solid white;
-	align-self: flex-start;
+	align-content: center;
 	height:8%;
+}
+.about {
+	display: flex;
+	flex-wrap: nowrap;
 }
 .fixed {
 	position: fixed;
@@ -15,6 +60,7 @@ nav {
 }
 
 .relative {
+	z-index: 2;
 	position:relative;
 }
 
@@ -24,35 +70,48 @@ p {
 
 .bigDrop {
 	display:flex;
-	flex-direction: column;
-	justify-content: space-around;
-	height:205%;
+	flex-direction:column;
+	align-content: space-around;
 	background-color: black;
-	align-self: flex-start;
-	border:1px solid white;
-	border-top:0px;
-	padding: 0px;
+	height: 300%;
 }
 
-.admin {
-	height:305%;
-}
-
-.bigDrop > div {
-	height:100%;
+.bigDrop div {
+	position: relative;
 	width: 100%;
-	padding: 10px;
+	text-align: center;
+}
+
+
+.noDrop div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 1%;
+	height: 100%;
+	width:100%;
 }
 
-.bigDrop >div:first-child {
-	border-bottom: 1px solid white;
-}
+/*.admin {
+	height:305%;
+}*/
 
-nav > div {
-	padding: 10px;
+/*.bigDrop > * {
+	height:100%;
+	width:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}*/
+
+/*
+.nav > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	white-space: nowrap;
+	height:100%;
+	padding: 1%;
 	font-size: 1.5rem;
 	border-left: 1px solid white;
 	cursor: pointer;
@@ -61,15 +120,15 @@ nav > div {
 
 .fonted {
 	font-family: 'Grenze', serif;
-	font-size: 1.5rem;
 }
 
 .logo {
 	margin-right:auto;
 	border-left: 0;
 }
+*/
 
-@media only screen and (max-width: 800px) {
+/*@media only screen and (max-width: 800px) {
 
 
   .logo {
@@ -81,14 +140,11 @@ nav > div {
   }
 
   .fonted {
-  	font-size: 1.2rem
+  	font-size: 1rem
   }
   
   nav > div {
-    padding: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 1.2rem;
+    padding: 10px;
   }
 }
 
@@ -110,7 +166,6 @@ nav > div {
 	}
 	nav > div {
 		font-size: 1rem;
-		padding-top: 5px;
 	}
 
 	.fonted {
@@ -118,6 +173,6 @@ nav > div {
 	}
 
 	.admin {
-		height:305%;
+		height:300%;
 	}
-}
+}*/

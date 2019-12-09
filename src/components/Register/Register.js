@@ -27,7 +27,7 @@ class Register extends React.Component {
 	}
 
 	onSubmitRegister = () => {
-		fetch('http://localhost:3000/register',
+		fetch('https://still-escarpment-99159.herokuapp.com/register',
 			{
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
@@ -72,7 +72,7 @@ class Register extends React.Component {
 					<input type='submit' onClick={() => this.onSubmitRegister()} 
 							className="pointer hover-bg-white-20 logbutt mh1 f6 link ph3 pv2 mb2 dib white bg-black" 
 							value='Register'/>
-					<div onClick={() => onRouteChange('signin')}className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Sign In</div>
+					<div onClick={() => {onRouteChange('signin');this.props.history.push('/signin')}}className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Sign In</div>
 					</div>
 				</div>
 			</div>
@@ -81,5 +81,3 @@ class Register extends React.Component {
 }
 
 export default Register;
-
-// onRouteChange,onSignIn

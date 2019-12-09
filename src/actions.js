@@ -15,17 +15,20 @@ import {
  		 SIGN_OUT ,
  		 HIDE_SIGN_OUT ,
  		 GRAB_USER_INFO ,
+ 		 RESET_USER , 
  		 CHANGE_ADMIN_ROUTE ,
  		 GRAB_ITEM_QUANTITY ,
  		 EDIT_ITEM_STORAGE ,
  		 CANCEL_EDIT_ITEM ,
- 		 GRAB_ITEM_IMAGE ,
  		 ITEM_QUANTITY_XS_CHANGE ,
  		 ITEM_QUANTITY_S_CHANGE ,
  		 ITEM_QUANTITY_M_CHANGE ,
  		 ITEM_QUANTITY_L_CHANGE ,
  		 ITEM_QUANTITY_XL_CHANGE ,
- 		 ITEM_IMAGE_CHANGE
+ 		 ITEM_IMAGE_CHANGE ,
+ 		 ADD_ITEM_SIZE ,
+ 		 SHOW_GRID , 
+ 		 HIDE_GRID
  		} from './constants.js';
 
 export const routeChange = (text) => ({
@@ -47,6 +50,11 @@ export const changeItemId = (id) => ({
 	payload: id
 })
 
+export const changeItemSize = (size) => ({
+	type: ADD_ITEM_SIZE,
+	payload: size
+})
+
 export const requestItems = (database) => ({
 	type: REQUEST_ITEMS,
 	payload: database
@@ -56,9 +64,9 @@ export const logIn = () => ({
 	type: SIGN_IN
 })
 
-export const addCart = (id) => ({
+export const addCart = (item) => ({
 	type: CART_ADD,
-	payload: id
+	payload: item
 })
 
 export const clearCart = () => ({
@@ -150,7 +158,14 @@ export const cancelEdit = () => ({
 	type:CANCEL_EDIT_ITEM
 })
 
+export const showGrid = () => ({
+	type:SHOW_GRID
+})
 
-// export const toAdmin = () => ({
-// 	type: 
-// })
+export const hideGrid = () => ({
+	type:HIDE_GRID
+})
+
+export const resetUser = () => ({
+	type:RESET_USER
+})

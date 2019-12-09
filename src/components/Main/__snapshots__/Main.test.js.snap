@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render component 1`] = `
+"<div className=\\"container\\">
+  <div onClick={[Function: onClick]} className=\\"left shader zone tc\\">
+    <p className=\\"glow texter shadow-1\\">
+      Accessories
+    </p>
+  </div>
+  <div onClick={[Function: onClick]} className=\\"righttop zone shadow-1\\">
+    <p className=\\"texter shadow-1\\">
+      Topwear
+    </p>
+  </div>
+  <div onClick={[Function: onClick]} className=\\"rightlow zone shadow-1\\">
+    <p className=\\"texter shadow-1\\">
+      Bottomwear
+    </p>
+  </div>
+</div>"
+`;

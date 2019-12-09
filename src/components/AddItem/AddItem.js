@@ -2,8 +2,7 @@ import React from 'react';
 import './AddItem.css';
 import 'tachyons';
 
-let itemId = ''
-
+let itemId = '';
 const initialState = {
 			addItemName:'',
 			addItemPrice:'',
@@ -15,14 +14,13 @@ const initialState = {
 		}
 
 class AddItem extends React.Component {
-
-	constructor(){
+	constructor(props){
 		super();
 		this.state = initialState
 	}
 
 	componentDidMount() {
-	fetch('http://localhost:3000/getstorage')
+	fetch('https://still-escarpment-99159.herokuapp.com/getstorage')
 		.then(response => response.json())
 		.then(items => itemId = items[items.length-1].itemid + 1)
 }
@@ -66,6 +64,7 @@ class AddItem extends React.Component {
 
 		onItemIdChange = (event) => {
 		this.setState({addItemId: event.target.value})
+		console.log(this.state,'itemchange')
 	}
 
 		onItemSrcChange = (event) => {
@@ -94,7 +93,7 @@ class AddItem extends React.Component {
 	}
 
 	onAddItem = () => {
-		fetch('http://localhost:3000/additem',
+		fetch('https://still-escarpment-99159.herokuapp.com/additem',
 			{
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
@@ -121,6 +120,7 @@ class AddItem extends React.Component {
 	}
 
 	render() {
+		console.log(this.props)
 			return(
 			<div id="additem" className="center w5">
 				<div>
@@ -178,8 +178,8 @@ class AddItem extends React.Component {
 					</div>
 				</div>
 				<div>
-					<p>ID</p>
-					<input type="text" name="id" ref="Id" value={itemId}
+					<p>ID({itemId})</p>
+					<input type="text" name="id" ref="Id"
 						onChange={this.onItemIdChange}/>
 				</div>
 				<div>
@@ -197,7 +197,7 @@ class AddItem extends React.Component {
 						<p>Add Item</p>
 					</div>
 				</div>
-				{console.log(this.state)}
+				{console.log(this.props)}
 			</div>
 		)
 	}

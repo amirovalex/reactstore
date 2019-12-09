@@ -15,18 +15,22 @@ import {
  		 SIGN_OUT ,
  		 HIDE_SIGN_OUT ,
  		 GRAB_USER_INFO ,
+ 		 RESET_USER ,
  		 CHANGE_ADMIN_ROUTE ,
  		 GRAB_ITEM_QUANTITY ,
  		 EDIT_ITEM_STORAGE ,
  		 CANCEL_EDIT_ITEM ,
- 		 GRAB_ITEM_IMAGE ,
  		 ITEM_QUANTITY_XS_CHANGE ,
  		 ITEM_QUANTITY_S_CHANGE ,
  		 ITEM_QUANTITY_M_CHANGE ,
  		 ITEM_QUANTITY_L_CHANGE ,
  		 ITEM_QUANTITY_XL_CHANGE ,
- 		 ITEM_IMAGE_CHANGE  		 
+ 		 ITEM_IMAGE_CHANGE ,
+ 		 ADD_ITEM_SIZE ,
+ 		 SHOW_GRID ,
+ 		 HIDE_GRID
  		} from './constants.js';
+import { addItemToCart } from './utils/utils.js';
 
 const initialStateRoute = {
       route: 'home',
@@ -68,13 +72,16 @@ export const dropdownMenu = (state=initialStateMenu,action={}) => {
 }
 
 const initialStateId = {
-      itemId: ''
+      itemId: '',
+      itemsize: 'xs'
 }
 
 export const idChange = (state=initialStateId,action={}) => {
 	switch(action.type) {
 		case ITEM_ID_CHANGE:
 			return {...state,itemId:action.payload}
+		case ADD_ITEM_SIZE:
+			return {...state,itemsize:action.payload.target.value}
 		default:
 			return state;
 	}
@@ -115,7 +122,7 @@ const initialStateCart = {
 export const cartAdd = (state=initialStateCart,action={}) => {
 	switch(action.type) {
 		case CART_ADD:
-			return {...state,cart:[...state.cart,action.payload]}
+			return {...state,cart: addItemToCart(state.cart,action.payload)}
 		case CLEAR_CART:
 			return {...state,cart:[]}
 		case DELETE_ITEM:
@@ -169,10 +176,10 @@ export const signOut = (state=initialStateDropSignOut,action={}) => {
 }
 
 const initialStateUser = {
-	user:{	id:'',
-			name:'',
-			email:'',
-			joined:'',
+	user:{	id:null,
+			name:null,
+			email:null,
+			joined:null,
 			isAdmin:false
 		 }
 }
@@ -187,6 +194,8 @@ export const userInfo = (state=initialStateUser,action={}) => {
 				joined:action.payload.joined,
 				isAdmin:action.payload.isadmin
 			}}
+		case RESET_USER:
+			return initialStateUser;
 		default:
 			return state;
 	}
@@ -272,6 +281,21 @@ export const editItem = (state=initialStateEditStorage,action = {}) => {
 			return {...state,isEditing:true}
 		case CANCEL_EDIT_ITEM:
 			return {...state,isEditing:false}
+		default:
+			return state;
+	}
+}
+
+const initialStateGrid = {
+	grid:true
+}
+
+export const gridSystem = (state=initialStateGrid,action = {})=> {
+	switch(action.type) {
+		case HIDE_GRID:
+			return {...state,grid:false}
+		case SHOW_GRID:
+			return {...state,grid:true}
 		default:
 			return state;
 	}

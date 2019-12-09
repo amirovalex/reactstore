@@ -1,0 +1,155 @@
+.menu-area {
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height:10vh;
+	z-index: 2;
+	background: black;
+	border-bottom: 1px solid white;
+	top:0;
+}
+
+.part2 {
+	height: 100%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.part2 div , .logo{
+	cursor: pointer;
+	display: flex;
+	height: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	justify-content: center;
+	align-items: center;
+}
+
+.part2 {
+	margin-right: 10px;
+}
+.part3 {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo {
+	margin-left: 20px;
+	width:10%;
+	height: 80%;
+}
+
+div.dropDown {
+	flex-direction: column;
+	height:20vh;
+	position:absolute;
+	margin-top: 15vh;
+	padding-left: 5px;
+	text-align: center;
+}
+
+.dropDown div {
+	padding: 10px;
+	width:100%;
+	background-color: black;
+}
+
+div .part4 {
+	height:100%;
+	background-color: black;
+}
+
+.bord {
+	border-top: 1px solid #C0B7B3;
+}
+
+span {
+	font-size: 1.2rem;
+	background:none;
+	border:none;
+	font-family: 'Grenze', serif;
+	color:white;
+}
+.dropDown div:hover {
+	color:black;
+}
+
+div.user {
+	height: 10vh;
+	margin-top: 10vh;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+div.signUser {
+	padding-right: 11px;
+	padding-left: 11px;
+}
+
+@media only screen and (max-width: 600px) {
+  span {
+    font-size:1rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  span {
+    font-size:0.7rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  span {
+    font-size:0.5rem;
+  }
+}
+
+@media only screen and (max-height: 525px) {
+	div.dropDown {
+		height: 10vh;
+		margin-top:14vh;
+}
+	div.user {
+	height: 10vh;
+	margin-top: 10vh;
+}
+
+}
+
+@media only screen and (max-height: 450px) {
+	div.dropDown {
+		height: 10vh;
+		margin-top:14.5vh;
+}
+	div.user {
+	height: 10vh;
+	margin-top: 10vh;
+}
+}
+
+@media only screen and (max-height: 400px) {
+	div.dropDown {
+		height: 12vh;
+		margin-top:16.8vh;
+}
+	div.user {
+	height: 10vh;
+	margin-top: 10vh;
+}
+}
+
+@media only screen and (max-height: 350px) {
+	div.dropDown {
+		height: 14vh;
+		margin-top:18.9vh;
+}
+	div.user {
+	height: 10vh;
+	margin-top: 10vh;
+}
+}

@@ -6,23 +6,22 @@ html {
 	height: 100vh;
 }
 
-
 body {
 	height:100%;
 	margin: 0;
 }
 
 .container {
-	padding-top: 5px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-auto-rows: 1fr 1fr;
 	grid-auto-flow:column;
-	height: 100vh;
+	height: 90%;
+	width: 100%;
 	overflow: visible;
 	justify-content: center;
     align-content: center;
-    filter: drop-shadow(0px 10px 5px rgba(0,0,0,0.5)) drop-shadow(1px 1px 1px #66E7E7) drop-shadow(2px 3px 5px #FFFA49) drop-shadow(2px 1px 10px #C70013);
+    filter: drop-shadow(0px 10px 5px rgba(0,0,0,0.5)) drop-shadow(2px 3px 5px #FFFA49) drop-shadow(2px 1px 10px #C70013);
 }
 
 .zone {
@@ -82,9 +81,57 @@ body {
 	font-family: 'Grenze', serif;
 }
 
-
 @media only screen and (max-width: 800px) {
 	.texter {
-		font-size:2rem;
+		font-size:1.6rem;
 	}
+}
+
+@media only screen and (max-height: 500px) {
+	.texter {
+		font-size:1.6rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+
+	.container{
+		height:90%;
+	}
+
+	.left {
+	display:flex;
+	align-items: center;
+	width:100%;
+	position: relative;
+	clip-path: polygon(0% 38%,0% 36%,-3% -7%, 100% 0%, 101% 105%,100% 99%, 82% 96%, 60% 99%,55% 94%,40% 99%,33% 96%,15% 99%,8% 98% , 0% 100%);
+	grid-column: 1/3;
+	grid-row: 1;
+	background-image: url("http://images2.fanpop.com/images/photos/6800000/Slipknot-poster-metal-gods-6809607-2560-1700.jpg");
+}
+
+.righttop {
+	display:flex;
+	align-items: center;
+	background-image: url("https://i.ytimg.com/vi/Co1HIvM5KB0/maxresdefault.jpg");
+	position: relative;
+	width: 100%;
+	grid-column: 1/3;
+	grid-row: 2;
+	clip-path: polygon(-1% 4%,40% 66%,117% 94%,77% 74%,43% 65%,0% 4%,30% 1%,35% 3%,43% 3%,50% 0%,55% 3%,75% 1%, 100% 3%, 101% 99%,95% 98%, 87% 97%, 62% 99%,55% 94%,40% 98%,33% 96%,15% 99%,8% 98% , 0% 100%);
+	justify-self: end;
+}
+
+.rightlow {
+	display:flex;
+	align-items: center;
+	clip-path: polygon(-1% 4%,15% 5%,30% 1%,35% 3%,43% 3%,50% 0%,59% 3%,75% 0%,92% 1%, 100% 4%, 101% 107%,93% 100%, 82% 100%, 60% 100%,55% 100%,40% 100%,33% 100%,16% 100%,8% 100% , 0% 100%);
+	position: relative;
+	width: 100%;
+	grid-column: 1/3;
+	grid-row: 3;
+	justify-self:end;
+	background-image: url('http://wallsdesk.com/wp-content/uploads/2016/12/Slipknot-Pictures.jpg');
+}
+
 }

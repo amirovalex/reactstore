@@ -3,11 +3,6 @@ p , h3 {
 	color:white;
 }
 
-li {
-	cursor: pointer;
+a {
 	font-family: 'Grenze', serif;
-	color:white;
-	list-style-type: none;
-	font-size: 1.8rem;
-	padding:5px;
 }

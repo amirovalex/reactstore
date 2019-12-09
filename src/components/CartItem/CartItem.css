@@ -11,8 +11,20 @@ img {
 	grid-row: 1/3;
 }
 
-.self {
-	justify-self:end;
-	align-self: start;
-	margin:0;
+.cartitem {
+	grid-column: 3/4;
+	grid-row: 3/4;
+}
+
+.flexed {
+	text-align: center;
+}
+
+.flexed_item {
+	display: inline-block;
+}
+
+.flexed_item2 {
+	margin-left: auto;
+	float:right;
 }

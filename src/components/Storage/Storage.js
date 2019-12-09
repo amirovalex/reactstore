@@ -14,7 +14,7 @@ class Storage extends React.Component {
 	}
 
 	componentDidMount() {
-	fetch('http://localhost:3000/getstorage')
+	fetch('https://still-escarpment-99159.herokuapp.com/getstorage')
 		.then(response => response.json())
 		.then(items => this.setState({storage:items}))
 }

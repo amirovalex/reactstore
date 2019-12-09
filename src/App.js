@@ -1,14 +1,16 @@
 import React , {Component} from 'react';
 import { connect } from 'react-redux';
 import Main from './components/Main/Main'
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar2';
 import Store from './components/Store/Store';
 import Cart from './components/Cart/Cart';
 import SignIn from './components/SignIn/SignIn';
-import Admin from './components/Admin/Admin'
+import Admin from './components/Admin/Admin';
+import About from './components/About/About';
+import { Route , Redirect } from 'react-router-dom';
 import './App.css';
 import Register from './components/Register/Register';
-import { routeChange , requestItems , categoryChange , changeItemId , dropMenuDown , logIn , addCart , clearCart , deleteCartItem , getUserId , addCartPrice , deleteCartPrice , dropSignedOut , signOut , hideSignOut , getUserInfo , changeAdminRoute , getItemQuantity , itemEdit , cancelEdit , editQuantityXs , editQuantityS , editQuantityM , editQuantityL , editQuantityXl , editItemImage } from './actions';
+import { routeChange , requestItems , categoryChange , changeItemId , dropMenuDown , logIn , addCart , clearCart , deleteCartItem , getUserId , addCartPrice , deleteCartPrice , dropSignedOut , signOut , hideSignOut , getUserInfo , changeAdminRoute , getItemQuantity , itemEdit , cancelEdit , editQuantityXs , editQuantityS , editQuantityM , editQuantityL , editQuantityXl , editItemImage , changeItemSize , showGrid , hideGrid , resetUser } from './actions';
 
 const mapStateToProps = state => {
   return {
@@ -16,6 +18,7 @@ const mapStateToProps = state => {
     items: state.requestItems.items,
     category: state.changeCategory.category,
     itemId: state.idChange.itemId,
+    itemsize: state.idChange.itemsize,
     isDropdown: state.dropdownMenu.isDropdown,
     isSignedIn: state.signIn.isSignedIn,
     cart: state.cartAdd.cart,
@@ -26,7 +29,8 @@ const mapStateToProps = state => {
     adminRoute: state.adminRouter.adminRoute,
     image: state.itemQuantity.image,
     quantity: state.itemQuantity.quantity,
-    isEditing: state.editItem.isEditing
+    isEditing: state.editItem.isEditing,
+    grid: state.gridSystem.grid
   }
 }
 
@@ -57,19 +61,22 @@ const mapDispatchToProps = (dispatch) => {
     onEditQuantityM: (obj) => (dispatch(editQuantityM(obj))),
     onEditQuantityL: (obj) => (dispatch(editQuantityL(obj))),
     onEditQuantityXl: (obj) => (dispatch(editQuantityXl(obj))),
-    onEditItemImage: (obj) => (dispatch(editItemImage(obj)))
+    onEditItemImage: (obj) => (dispatch(editItemImage(obj))),
+    onChangeItemSize: (size) => (dispatch(changeItemSize(size))),
+    onHideGrid: () => (dispatch(hideGrid())),
+    onShowGrid: () => (dispatch(showGrid())),
+    onUserReset: () => (dispatch(resetUser()))
   }
 }
 
 class App extends Component {
-
-
-  //THE STORE STATE MOVING
-  componentDidMount() {
-  fetch('http://localhost:3000/getstorage')
+componentDidMount() {
+  fetch('https://still-escarpment-99159.herokuapp.com/getstorage')
     .then(response => response.json())
     .then(items => this.props.onRequestItems(items))
 }
+
+  //THE STORE STATE MOVING
 
 
   render(){
@@ -86,14 +93,16 @@ class App extends Component {
             onGetItemQuantity , isEditing , onItemEdit ,
             onCancelEdit , image , onEditQuantityXs , 
             onEditQuantityS , onEditQuantityM , onEditQuantityL ,
-            onEditQuantityXl , onEditItemImage } = this.props;
-    const filteredItems = items.filter(item => {
-      return (item.category === category)
-    })
+            onEditQuantityXl , onEditItemImage , onChangeItemSize ,
+            itemsize , onRequestItems , grid ,
+            onHideGrid , onShowGrid , onUserReset } = this.props;
     return(
       <div style={{height:'100%'}}>
         <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet"/>
-        <Navbar 
+        <Route path='/' 
+          render={(props) => <Navbar 
+          {...props}
+          onShowGrid={onShowGrid}
           cart={cart}
           route={route} 
           onRouteChange = {onRouteChange} 
@@ -106,52 +115,69 @@ class App extends Component {
           onSignOut = {onSignOut} 
           onHideSignOut ={onHideSignOut}
           onChangeAdminRoute={onChangeAdminRoute}
-          user = {user} />
-          {route === 'admin' ?
-            <Admin 
-            onEditQuantityXs = {onEditQuantityXs}
-            onEditQuantityS = {onEditQuantityS}
-            onEditQuantityM = {onEditQuantityM}
-            onEditQuantityL = {onEditQuantityL}
-            onEditQuantityXl = {onEditQuantityXl}
-            onEditItemImage = {onEditItemImage}
-            isEditing={isEditing}
-            onItemEdit={onItemEdit}
-            onItemIdChange={onItemIdChange}
-            itemId={itemId}
-            adminRoute={adminRoute}
-            onChangeAdminRoute={onChangeAdminRoute}
-            quantity={quantity}
-            onGetItemQuantity={onGetItemQuantity}
-            onCancelEdit={onCancelEdit}
-            image={image}
-            /> :
-            ( route === "signin" ? 
-              <SignIn 
+          user = {user} 
+          onUserReset = {onUserReset}
+          onClearCart = {onClearCart}/>}
+          />    
+        <Route path='/admin'
+                 render={(props) => user.isAdmin === false ? <Redirect to='/'/> : <Admin {...props}
+                 onEditQuantityXs= {onEditQuantityXs}
+                 onEditQuantityS= {onEditQuantityS}
+                 onEditQuantityM= {onEditQuantityM}
+                 onEditQuantityL= {onEditQuantityL}
+                 onEditQuantityXl= {onEditQuantityXl}
+                 onEditItemImage= {onEditItemImage}
+                 isEditing={isEditing}
+                 onItemEdit={onItemEdit}
+                 onItemIdChange={onItemIdChange}
+                 itemId={itemId}
+                 adminRoute={adminRoute}
+                 onChangeAdminRoute={onChangeAdminRoute}
+                 quantity={quantity}
+                 onGetItemQuantity={onGetItemQuantity}
+                 onCancelEdit={onCancelEdit}
+                 image={image}
+                 user={user}
+                 />} 
+        />
+        <Route exact path='/signin'
+                 render={(props) => isSignedIn === false ? 
+                  (<SignIn {...props} 
               onRouteChange = {onRouteChange}
               onSignIn = {onSignIn}
               onGetUserId = {onGetUserId}
-              onGetUserInfo = {onGetUserInfo}
-              />
-            : (route === "register" ?
-              <Register 
+              onGetUserInfo = {onGetUserInfo} />
+              ) : <Redirect to='/' />} 
+            />
+        <Route exact path='/register'
+                 render={(props) => isSignedIn === false ? 
+                  (<Register {...props}
               onGetUserInfo = {onGetUserInfo}
               onRouteChange = {onRouteChange}
-              onSignIn = {onSignIn}/> :
-        (route === "cart" ? 
-          (<Cart
+              onSignIn = {onSignIn}/>)
+                  : <Redirect to='/' />}
+            /> 
+        <Route exact path='/cart'
+                 render={(props) => <Cart {...props}
+          user={user}
           onDeleteCartItem={onDeleteCartItem}
           onClearCart={onClearCart}
           cart={cart}
           items={items}
           cartprice={cartprice}
+          quantity={quantity}
           onCartPriceDelete={onCartPriceDelete}
-          />
-          )
-          :
-        ( route === 'home' ?
-          <Main onRouteChange = {onRouteChange} onCategoryChange = {onCategoryChange} />
-       : (    route === 'store' ? (<Store 
+          />}
+        />
+        <Route exact path='/'
+                 render={(props) => (<Main {...props} 
+                 onRouteChange = {onRouteChange} 
+                 onCategoryChange = {onCategoryChange} />)
+               }
+        />
+        <Route path='/store'
+                 render={(props) => <Store {...props} 
+                  onRequestItems={onRequestItems}
                   isDropdown={isDropdown}
                   onDropdownMenu={onDropdownMenu}
                   onCartAdd={onCartAdd}
@@ -161,11 +187,20 @@ class App extends Component {
                   onRouteChange={onRouteChange} 
                   onCategoryChange={onCategoryChange} 
                   items={items} 
-                  filteredItems={filteredItems} 
                   category={category}
                   onCartPriceAdd={onCartPriceAdd}
-                   />)
-            : (route === 'itempage' ? (<Store 
+                  onChangeItemSize={onChangeItemSize}
+                  itemsize={itemsize}
+                  grid={grid}
+                  onHideGrid={onHideGrid}
+                  onShowGrid={onShowGrid}
+                   />}
+        />    
+        <Route path='/store/itempage/:itemid'
+                 render={(props) => <Store {...props}
+                  onRequestItems={onRequestItems}
+                  itemsize={itemsize}
+                  onChangeItemSize={onChangeItemSize}
                   isDropdown={isDropdown}
                   onDropdownMenu={onDropdownMenu}
                   onCartAdd={onCartAdd}
@@ -175,17 +210,16 @@ class App extends Component {
                   onRouteChange={onRouteChange} 
                   onCategoryChange={onCategoryChange} 
                   items={items} 
-                  filteredItems={filteredItems} 
                   category={category}
                   onCartPriceAdd={onCartPriceAdd}
-                   />) : true )
-          )
-          )
-          )
-        )
-      )}  
+                   />}
+        />
+        <Route exact path='/about'
+                 render={(props) => <About {...props}/>}
+        />
       </div>
     )
-}}
+  }
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

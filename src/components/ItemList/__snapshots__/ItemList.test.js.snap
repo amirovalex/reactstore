@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render component 1`] = `
+"<div id=\\"rows \\" className=\\"store center\\">
+  <div className=\\"center\\" onClick={[Function: onClick]}>
+    <Item id={1} name=\\"Black Hoodie\\" price=\\"120$\\" category=\\"topwear\\" src=\\"https://cdn.rickowens.eu/products/69433/large/DU19F6285FEP8_09_M_2.jpg?1568643377\\" onRouteChange={[undefined]} onItemIdChange={[undefined]} />
+  </div>
+</div>"
+`;

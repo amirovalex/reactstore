@@ -2,8 +2,8 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	align-items: center;
 	width:100%;
+	height:100%;
 }
 
 .flexer {
@@ -51,6 +51,18 @@
 .menubutt {
 	width:50px;
 	display:inline-block;
+}
+
+li {
+	cursor: pointer;
+	font-family: 'Grenze', serif;
+	color:white;
+	list-style-type: none;
+	font-size: 1.8rem;
+	padding:5px;
+}
+.storepage {
+	height: 90vh;
 }
 @media only screen and (max-width: 800px){
 	.grid {

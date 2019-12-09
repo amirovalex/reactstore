@@ -19,7 +19,7 @@ class SignIn extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('http://localhost:3000/signin',
+		fetch('https://still-escarpment-99159.herokuapp.com/signin',
 			{
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
@@ -34,12 +34,12 @@ class SignIn extends React.Component {
 						this.props.onGetUserInfo(user)
 						this.props.onRouteChange('home')
 						this.props.onSignIn()
+						this.props.history.push('/')
 					}
 				})
 	}
-
-
 	render() {
+		console.log(this.props)
 		const { onRouteChange } = this.props
 		return(
 			<div className="signbox pa3">
@@ -55,7 +55,7 @@ class SignIn extends React.Component {
 							className="pass" type="password" maxLength='16' name="password" /></div>
 					<div className="buttons">
 					<input type='submit' onClick={() => this.onSubmitSignIn()}className="hover-bg-white-20 pointer pa2 logbutt mh1 f6 link ph3 pv2 mb2 dib white bg-black" value='Login'/>
-					<div onClick={() => onRouteChange('register')}className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Register</div>
+					<div onClick={() => {onRouteChange('register');this.props.history.push('/register')}}className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Register</div>
 					</div>
 				</div>
 			</div>

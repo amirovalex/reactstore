@@ -9,3 +9,12 @@
 	cursor: pointer;
 }
 
+@media only screen and (max-width: 800px) {
+	.itemflex {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	} 
+}
+

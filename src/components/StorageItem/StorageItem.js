@@ -4,14 +4,14 @@ import './StorageItem.css'
 class StorageItem extends React.Component {
 
 	componentDidMount() {
-		fetch(`http://localhost:3000/getquantity/${this.props.itemId}`)
+		fetch(`https://still-escarpment-99159.herokuapp.com/getquantity/${this.props.itemId}`)
 			.then(response => response.json())
 			.then(item => this.props.onGetItemQuantity(item))
 			console.log(this.state)
 	}
 
 	onSaveEdits = () => {
-		fetch(`http://localhost:3000/updatequantity/${this.props.itemId}`,
+		fetch(`https://still-escarpment-99159.herokuapp.com/updatequantity/${this.props.itemId}`,
 			{
 				method: 'put',
 				headers: {'Content-Type': 'application/json'},
@@ -37,7 +37,7 @@ class StorageItem extends React.Component {
 	}
 
 	onDeleteItem = () => {
-		fetch(`http://localhost:3000/deleteitem/${this.props.itemId}`,
+		fetch(`https://still-escarpment-99159.herokuapp.com/deleteitem/${this.props.itemId}`,
 		{
 			method:	'delete',
 			headers: {'Content-Type':'application/json'}
@@ -53,8 +53,8 @@ class StorageItem extends React.Component {
 	}
 
 render() {
-	const { quantity , onGetItemsQuantity , itemId ,
-			storage, src , name , price ,
+	const { quantity ,
+			src , name , price ,
 			isEditing , onItemEdit , onCancelEdit ,
 			image , onEditQuantityXs ,onEditQuantityS , 
 			onEditQuantityM , onEditQuantityL , onEditQuantityXl , 

@@ -3,23 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "lodash": "^4.17.15",
+    "node-fetch": "^2.6.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-polygon": "^0.2.0",
     "react-redux": "^7.1.1",
     "react-responsive": "^8.0.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "react-stripe-checkout": "^2.6.3",
-    "react-stripe-elements": "^5.0.1",
+    "react-stripe-elements": "^5.1.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "tachyons": "^4.11.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,6 +42,8 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^1.19.3"
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "nodemon": "^1.19.4"
   }
 }

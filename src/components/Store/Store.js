@@ -1,126 +1,105 @@
 import React from 'react';
-import Item from '../Item/Item';
-import ItemPage from '../ItemPage/ItemPage'
+import ItemList from '../ItemList/ItemList';
+import ItemPage from '../ItemPage/ItemPage';
 import Scroll from '../Scroll/Scroll';
+import { Route,Switch } from 'react-router-dom';
+import Menu from '../Menu/Menu';
 import './Store.css';
 import 'tachyons';
-import { useMediaQuery } from 'react-responsive'
+import CategoryPage from '../CategoryPage/CategoryPage'
 
 
-const Store = ({onItemIdChange,itemId,route,items,category,filteredItems,onCategoryChange,onRouteChange,onCartAdd,onDropdownMenu,isDropdown,onCartPriceAdd}) => {
-const indexItem = items.findIndex(item => item.itemid === itemId)
-const isTabletOrMobile = useMediaQuery({
-    query: '(max-width: 800px)'
-  })
+class Store extends React.Component {
+	constructor(props){
+		super()	
+	}
+
+
+
+componentWillUnmount() {
+	this.props.onShowGrid()
+}
+
+render(){
+	console.log(this.props)
+	const {itemId,items,onCartAdd,onCartPriceAdd,onChangeItemSize,itemsize,onRequestItems} = this.props
+    const indexItem = items.findIndex(item => item.itemid === itemId)
 
 	return(	
 		<div className="storepage center tc">
-		{route === "itempage" 
-		? 	
-			<ItemPage 
-				onCartAdd={onCartAdd}
-				src={items[indexItem].itemimage}
-				name={items[indexItem].itemname}
-				price={items[indexItem].price}
-				itemId={itemId}
-				onCartPriceAdd={onCartPriceAdd}
-				items={items}
-			/>
-		:
-			(<div className="grid">
-				<div className="sidebar">
-					<ul className="flex flex-column justify-center tc pa3">
-						<li 
-							onClick= {() => onCategoryChange('all')}
-							className="grow">All
-						</li>
-						<li 
-							onClick= {() => onCategoryChange('accessories')}
-							className="grow">Accessories
-						</li>
-						<li 
-							onClick= {() => onCategoryChange('topwear')}
-							className="grow">Topwear
-						</li>
-						<li 
-							onClick= {() => onCategoryChange('bottomwear')}
-							className="grow">Bottomwear
-						</li>
-					</ul> 
-				</div>
-				{isTabletOrMobile && <>
-					<div className="dropmenu tc">
-					{isDropdown === false ?
-						(<div className="menubutt tc" onClick={() => onDropdownMenu()}>
-						<p className="">Menu</p>
-						</div>)
-					:
-					(<div>
-						<div className="menubutt tc" onClick={() => onDropdownMenu()}>
-						<p>Menu</p>
-						</div>
-						<ul className="nopadd">
-						<li 
-							onClick= {() => onCategoryChange('all')}
-							className="grow">All
-						</li>
-						<li 
-							onClick= {() => onCategoryChange('accessories')}
-							className="grow tc">Accessories
-						</li>
-						<li 
-							onClick= {() => onCategoryChange('topwear')}
-							className="grow tc">Topwear
-						</li>
-						<li 
-							onClick= {() => onCategoryChange('bottomwear')}
-							className="grow tc">Bottomwear
-						</li>
-						</ul>
-						</div>
-					)}
-					</div></>}
-			{category === "all" ? 
+			<div className="grid" style={{display: this.props.grid ? 'grid' : 'none' }}>
+				<Switch>
+				<Route exact path={`/store/all`}
+				render={(props) => <Menu 
+					{...props}
+				isDropdown={this.props.isDropdown}
+				onDropdownMenu={this.props.onDropdownMenu}/>}
+				/>
+				<Route exact path={`/store/:categoryId`}
+				render={(props) => <Menu 
+					{...props}
+				isDropdown={this.props.isDropdown}
+				onDropdownMenu={this.props.onDropdownMenu}/>}
+				/>
+				</Switch>
 				<Scroll>
-				<div id="rows" className="store center">
-					{items.map((item,i)=> {
-						return(
-							<div className="center" onClick={() => {onRouteChange('itempage');onItemIdChange(items[i].itemid)}}>
-							<Item 
-							key={i}
-							id={items[i].itemid}
-							name={items[i].itemname}
-							price={items[i].price+'$'}
-							category={items[i].category}
-							src={items[i].itemimage}
-							onRouteChange={onRouteChange}
-							onItemIdChange={onItemIdChange}/>
-							 </div>) 
-					})}
-				</div>
-				</Scroll> :
-				<Scroll>
-						<div id="rows" className="store center">
-							{filteredItems.map((item,i)=> {
-								return(
-								<div className="center" onClick={() => {onRouteChange('itempage');onItemIdChange(filteredItems[i].itemid)}}>
-								<Item 
-								key={i}
-								name={filteredItems[i].itemname}
-								price={filteredItems[i].price+'$'}
-								category={filteredItems[i].category}
-								src={filteredItems[i].itemimage} 
-								onRouteChange={onRouteChange}
-								onItemIdChange={onItemIdChange}
-								/>
-								</div>) 
-					})}
-				</div>
+				<Switch>
+				<Route exact path={`/store/all`}
+					render={(props)=> <ItemList
+							{...props}
+							items={this.props.items}
+							onRouteChange={this.props.onRouteChange}
+							onItemIdChange={this.props.onItemIdChange}
+							onHideGrid={this.props.onHideGrid}/>}
+				/>
+				<Route exact path={`/store/:categoryId`}
+						render={(props)=> <CategoryPage
+							{...props}
+							onHideGrid={this.props.onHideGrid}
+							items={this.props.items}
+							onRouteChange={this.props.onRouteChange}
+							onItemIdChange={this.props.onItemIdChange}
+							/>}
+				/>
+				</Switch>			
 				</Scroll>
-			}
 			</div>
-		)}
+			<div>
+				<Switch>
+				<Route exact path={`/store/:categoryId/:itemId`}
+					render={(props)=> <ItemPage
+							{...props}
+							onCartAdd={onCartAdd}
+							items={items}
+							onRequestItems={this.props.onRequestItems}
+							src={items[indexItem].itemimage}
+							name={items[indexItem].itemname}
+							price={items[indexItem].price}
+							itemId={itemId}
+							onCartPriceAdd={onCartPriceAdd}
+							onChangeItemSize={onChangeItemSize}
+							itemsize={itemsize}/>
+							}
+				/>
+				<Route path={`/store/all/:itemId`}
+					render={(props)=> <ItemPage
+							{...props}
+							items={items}
+							onCartAdd={onCartAdd}
+							onRequestItems={onRequestItems}
+							src={items[indexItem].itemimage}
+							name={items[indexItem].itemname}
+							price={items[indexItem].price}
+							itemId={itemId}
+							onCartPriceAdd={onCartPriceAdd}
+							onChangeItemSize={onChangeItemSize}
+							itemsize={itemsize}/>
+							}
+				/>
+				</Switch> 
+			</div>
 		</div>
-
-	)}
+		)
+		}
+	}
 export default Store;
