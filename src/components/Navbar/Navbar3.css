@@ -101,6 +101,9 @@ div.signUser {
   span {
     font-size:0.7rem;
   }
+  div.dropDown {
+
+  }
 }
 
 @media only screen and (max-width: 350px) {

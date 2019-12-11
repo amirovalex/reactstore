@@ -26,13 +26,13 @@ class Navbar extends React.Component {
 					<span href="#">Logo</span>
 				</div>
 				<div  className = "part2">
-				<div className = "hover-bg-white-20" onClick = {() => {onRouteChange('store'); onCategoryChange("all");this.props.history.push('/store/all');onShowGrid()}}>
+				<div className = "selec hover-bg-white-20" onClick = {() => {onRouteChange('store'); onCategoryChange("all");this.props.history.push('/store/all');onShowGrid()}}>
 					<span href="#">Store</span>
 				</div>
-				<div className = "hover-bg-white-20" onClick = {() => {onRouteChange('about');this.props.history.push('/about')}}>
+				<div className = "selec hover-bg-white-20" onClick = {() => {onRouteChange('about');this.props.history.push('/about')}}>
 					<span href="#">About</span>
 				</div>
-				<div className = "hover-bg-white-20" onClick = {() => {onRouteChange('cart');this.props.history.push('/cart')}}>
+				<div className = "selec hover-bg-white-20" onClick = {() => {onRouteChange('cart');this.props.history.push('/cart')}}>
 					<span href="#">Cart({allQuantity})</span>
 				</div>
 				{isSignedIn === false ?
@@ -54,8 +54,8 @@ class Navbar extends React.Component {
 								)
 								:
 								(
-									<div><MediaQuery maxWidth={800}>
-										<div className="part3 part4 hover-bg-white-20"
+									<div className="padder"><MediaQuery maxWidth={812}>
+										<div className="part3 part4"
 										onClick={() => onDropSignOut()}
 										onMouseLeave={() => onHideSignOut()}
 										onMouseEnter={() => onDropSignOut()}>
@@ -71,8 +71,8 @@ class Navbar extends React.Component {
 										</div>
 									</div>
 									</MediaQuery>
-									<MediaQuery minWidth={800}>
-									<div className="part3 part4 hover-bg-white-20"
+									<MediaQuery minWidth={812}>
+									<div className="part3 part4"
 									onMouseEnter={() => onDropSignOut()}
 									onMouseLeave={() => onHideSignOut()}>
 									<span href="#" className="hiAdmin">Hi,Admin</span>
