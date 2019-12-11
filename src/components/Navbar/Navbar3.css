@@ -171,11 +171,22 @@ div.selec {
 
 @supports (-webkit-overflow-scrolling: touch) {
   @media only screen and (min-width: 812px) and (max-width:875px) and (orientation: landscape){
-	div.dropDown {
+	div.dropDown#pen {
 		height:20vh;
 		margin-top:15vh;
 	}
 }
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+  		div.dropDown {
+		height:20vh;
+		margin-top:15vh;
+	}
 }
 
 
