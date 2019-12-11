@@ -152,8 +152,8 @@ div.selec {
 
 @media only screen and (max-height: 350px) {
 	div.dropDown {
-		height: 14vh;
-		margin-top:18.9vh;
+		height: 20vh;
+		margin-top:16vh;
 }
 	div.user {
 	height: 10vh;
