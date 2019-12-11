@@ -54,7 +54,7 @@ class Navbar extends React.Component {
 								)
 								:
 								(
-									<div className="padder"><MediaQuery maxWidth={812}>
+									<div className="padder">
 										<div className="part3 part4"
 										onClick={() => onDropSignOut()}
 										onMouseLeave={() => onHideSignOut()}
@@ -70,22 +70,6 @@ class Navbar extends React.Component {
 											</div>
 										</div>
 									</div>
-									</MediaQuery>
-									<MediaQuery minWidth={812}>
-									<div className="part3 part4"
-									onMouseEnter={() => onDropSignOut()}
-									onMouseLeave={() => onHideSignOut()}>
-									<span href="#" className="hiAdmin">Hi,Admin</span>
-									<div className="dropDown" style={{display: droppedSignOut ? 'flex' : 'none'}}>
-										<div className = "bord hover-bg-white-40" onClick = {() => {onRouteChange('admin');onChangeAdminRoute('admin');this.props.history.push('/admin')}}><span href="#">Admin Panel
-											</span>
-										</div>
-										<div className = "hover-bg-white-40" onClick = {() => {onSignOut();this.props.history.push('/');onUserReset();onClearCart()}}><span href="">Sign Out
-											</span>
-										</div>
-									</div>
-								</div>
-								</MediaQuery>
 								</div>
 							)		
 						)
