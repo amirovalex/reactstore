@@ -7,7 +7,8 @@ class SignIn extends React.Component {
 		super();
 		this.state = {
 			signInEmail:'',
-			signInPassword:''
+			signInPassword:'',
+			signInFail:false
 		}
 	}
 	onEmailChange = (event) => {
@@ -16,6 +17,10 @@ class SignIn extends React.Component {
 
 	onPasswordChange = (event) => {
 		this.setState({signInPassword: event.target.value})
+	}
+
+	onSignInFail = () => {
+		this.setState({signInFail:true})
 	}
 
 	onSubmitSignIn = () => {
@@ -41,10 +46,15 @@ class SignIn extends React.Component {
 	render() {
 		console.log(this.props)
 		const { onRouteChange } = this.props
+		const { signInEmail , signInPassword , signInFail } = this.state
 		return(
 			<div className="phoneScreen center tc signbox pa3">
 				<div className="myForm signbox pa3 ba white shadow-3">
 					<p className="f3 pv2">Sign In:</p>
+					{signInFail === true ? 
+						<p style={{color:"red"}}>Email or password is not correct</p>
+						: null
+					}
 					<div className="flexer pv1"><p>Email:</p>
 						<input 
 							onChange={this.onEmailChange}
@@ -54,8 +64,13 @@ class SignIn extends React.Component {
 							onChange={this.onPasswordChange}
 							className="pass" type="password" maxLength='16' name="password" /></div>
 					<div className="buttons tc">
-					<input type='submit' onClick={() => this.onSubmitSignIn()}className="hover-bg-white-20 pointer pa2 logbutt mh1 f6 link ph3 pv2 mb2 dib white bg-black" value='Login'/>
-					<div onClick={() => {onRouteChange('register');this.props.history.push('/register')}}className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Register</div>
+					<input type='submit' onClick={signInEmail.length > 1 
+									&& signInPassword.length > 1 
+									? () => this.onSubmitSignIn()
+									: () => this.onSignInFail()
+								}
+									className="hover-bg-white-20 pointer pa2 logbutt mh1 f6 link ph3 pv2 mb2 dib white bg-black" value='Login'/>
+					<div onClick={() => {onRouteChange('register');this.props.history.push('/register')}}									className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Register</div>
 					</div>
 				</div>
 			</div>

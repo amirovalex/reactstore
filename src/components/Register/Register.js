@@ -9,7 +9,8 @@ class Register extends React.Component {
 			this.state={
 				registerName:"",
 				registerEmail:"",
-				registerPassword:""
+				registerPassword:"",
+				registerFail: false,
 			}
 		}
 	
@@ -24,6 +25,10 @@ class Register extends React.Component {
 
 	onPasswordChange = (event) => {
 		this.setState({registerPassword: event.target.value})
+	}
+
+	onRegisterFail = () => {
+		this.setState({registerFail:true})
 	}
 
 	onSubmitRegister = () => {
@@ -49,10 +54,15 @@ class Register extends React.Component {
 
 	render() {
 		const { onRouteChange } = this.props;
+		const { registerName, registerPassword, registerEmail } = this.state;
 			return(
 			<div className="phoneScreen signbox pa3">
 				<div className="myForm signbox pa3 ba white shadow-3">
 					<p className="f3 pv2">Register:</p>
+					{this.state.registerFail === true ? 
+						<p style={{color:"red"}}>Enter Valid Data</p>
+						: null
+					}
 					<div className="flexer pv1"><p>Name:</p>
 						<input 
 							onChange={this.onNameChange}
@@ -69,7 +79,9 @@ class Register extends React.Component {
 							className="pass" type="password" maxLength='16' name="password" />
 					</div>
 					<div>
-					<input type='submit' onClick={() => this.onSubmitRegister()} 
+					<input type='submit' onClick={registerName.length > 1 &&
+													registerEmail.length > 1 &&
+													registerPassword.length > 1 ? () => this.onSubmitRegister() : () => this.onRegisterFail()} 
 							className="pointer hover-bg-white-20 logbutt mh1 f6 link ph3 pv2 mb2 dib white bg-black" 
 							value='Register'/>
 					<div onClick={() => {onRouteChange('signin');this.props.history.push('/signin')}}className="hover-bg-white-20 pointer logbutt f6 mh1 link ph3 pv2 mb2 dib white bg-black">Sign In</div>

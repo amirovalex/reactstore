@@ -45,17 +45,18 @@ div, input[type="submit"] {
 }
 
 p {
-	font-size: 1.2em;
+	font-size: 1.5rem;
 	margin: 1px;
 }
 
 @media only screen and (max-width: 1080px) {
 .phoneScreen{
-	font-size: 1rem;
+	font-size: 2rem;
 }
 div.myForm {
 	width: 90%;
 	height:100%;
 }
 }
+
 
