@@ -93,7 +93,7 @@ body {
 	}
 }
 
-@media only screen and (max-width: 812px) {
+@media only screen and (max-width: 425px) {
 
 	.container{
 		height:90%;
