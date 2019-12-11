@@ -46,7 +46,7 @@
 
 div.dropDown {
 	flex-direction: column;
-	height:20%;
+	height:20vh;
 	position:absolute;
 	margin-top: 15vh;
 	padding-left: 5px;
@@ -80,7 +80,7 @@ span {
 }
 
 div.user {
-	height: 10%;
+	height: 10vh;
 	margin-top: 10vh;
 	padding-left: 0px;
 	padding-right: 0px;
@@ -111,11 +111,11 @@ div.signUser {
 
 @media only screen and (max-height: 525px) {
 	div.dropDown {
-		height: 10%;
+		height: 10vh;
 		margin-top:14vh;
 }
 	div.user {
-	height: 10%;
+	height: 10vh;
 	margin-top: 10vh;
 }
 
@@ -127,18 +127,18 @@ div.signUser {
 		margin-top:14.5vh;
 }
 	div.user {
-	height: 10%;
+	height: 10vh;
 	margin-top: 10vh;
 }
 }
 
 @media only screen and (max-height: 400px) {
 	div.dropDown {
-		height: 12%;
+		height: 12vh;
 		margin-top:16.8vh;
 }
 	div.user {
-	height: 10%;
+	height: 10vh;
 	margin-top: 10vh;
 }
 }
@@ -149,7 +149,7 @@ div.signUser {
 		margin-top:18.9vh;
 }
 	div.user {
-	height: 10%;
+	height: 10vh;
 	margin-top: 10vh;
 }
 }

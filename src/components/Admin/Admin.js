@@ -34,7 +34,7 @@ const Admin = (props) => {
 			</div>
 		</div>
 			:
-			(<div className="tc w5 pa4 ma3 center">
+			(<div className={props.location.pathname === "/admin/additem" ? "tc w5 ma3 center" : "tc w5 pa4 ma3 center"}>
 					<Route exact path={`${props.match.path}/additem`}
 						component={AddItem} />
 					<Route exact path={`${props.match.path}/storage`}
