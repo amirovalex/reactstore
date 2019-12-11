@@ -11,7 +11,8 @@ const CartItem = ({src,name,price,cart,unique,id,onDeleteCartItem,onCartPriceDel
 		<div className="itembox ba white pa2">
 			<img 
 				width="auto" 
-				height="100%" 
+				height="50px" 
+				width="50px"
 				alt="item" src={src}/>
 			<p>{name}</p>
 			<div classname="flexed">
