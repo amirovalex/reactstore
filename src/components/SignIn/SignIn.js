@@ -42,6 +42,7 @@ class SignIn extends React.Component {
 						this.props.history.push('/')
 					}
 				})
+				.catch(err => console.log('err signin'))
 	}
 	render() {
 		console.log(this.props)

@@ -74,6 +74,7 @@ componentDidMount() {
   fetch('https://still-escarpment-99159.herokuapp.com/getstorage')
     .then(response => response.json())
     .then(items => this.props.onRequestItems(items))
+    .catch(err => console.log('err app'))
 }
 
   //THE STORE STATE MOVING

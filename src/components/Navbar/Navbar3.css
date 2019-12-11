@@ -161,4 +161,13 @@ div.selec {
 }
 }
 
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0)
+{ @media only screen and (min-width: 812px) and (max-width:875px) and (orientation: landscape){
+	div.dropDown {
+		height:20vh;
+		margin-top:15vh;
+	}
+}}
+
+
 
