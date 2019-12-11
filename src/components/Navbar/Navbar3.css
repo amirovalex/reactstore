@@ -41,7 +41,7 @@
 .logo {
 	margin-left: 20px;
 	width:10%;
-	height: 80%;
+	height: 60%;
 }
 
 div.dropDown {
@@ -89,6 +89,10 @@ div.user {
 div.signUser {
 	padding-right: 11px;
 	padding-left: 11px;
+}
+
+div.selec {
+	height:60%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -156,3 +160,5 @@ div.signUser {
 	margin-top: 10vh;
 }
 }
+
+
