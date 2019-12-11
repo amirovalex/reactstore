@@ -81,7 +81,7 @@ body {
 	font-family: 'Grenze', serif;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 812px) {
 	.texter {
 		font-size:1.6rem;
 	}

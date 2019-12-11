@@ -3,7 +3,7 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	height:10vh;
+	height:10%;
 	z-index: 2;
 	background: black;
 	border-bottom: 1px solid white;
@@ -46,7 +46,7 @@
 
 div.dropDown {
 	flex-direction: column;
-	height:20vh;
+	height:20%;
 	position:absolute;
 	margin-top: 15vh;
 	padding-left: 5px;
@@ -80,7 +80,7 @@ span {
 }
 
 div.user {
-	height: 10vh;
+	height: 10%;
 	margin-top: 10vh;
 	padding-left: 0px;
 	padding-right: 0px;
@@ -111,11 +111,11 @@ div.signUser {
 
 @media only screen and (max-height: 525px) {
 	div.dropDown {
-		height: 10vh;
+		height: 10%;
 		margin-top:14vh;
 }
 	div.user {
-	height: 10vh;
+	height: 10%;
 	margin-top: 10vh;
 }
 
@@ -127,18 +127,18 @@ div.signUser {
 		margin-top:14.5vh;
 }
 	div.user {
-	height: 10vh;
+	height: 10%;
 	margin-top: 10vh;
 }
 }
 
 @media only screen and (max-height: 400px) {
 	div.dropDown {
-		height: 12vh;
+		height: 12%;
 		margin-top:16.8vh;
 }
 	div.user {
-	height: 10vh;
+	height: 10%;
 	margin-top: 10vh;
 }
 }
@@ -149,7 +149,7 @@ div.signUser {
 		margin-top:18.9vh;
 }
 	div.user {
-	height: 10vh;
+	height: 10%;
 	margin-top: 10vh;
 }
 }
