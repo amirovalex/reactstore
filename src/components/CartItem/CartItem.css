@@ -28,3 +28,12 @@ img {
 	margin-left: auto;
 	float:right;
 }
+
+#delete-button:hover {
+	color:red;
+	cursor: pointer;
+}
+
+.hover-red:hover {
+	color:red;
+}

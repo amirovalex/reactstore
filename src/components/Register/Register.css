@@ -43,7 +43,7 @@ p {
 
 @media only screen and (max-width: 800px) {
 .phoneScreen{
-	font-size: 0.5em;
+	font-size: 0.9em;
 }
 div.myForm {
 	width: 90%;

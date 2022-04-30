@@ -19,3 +19,9 @@ code {
     monospace;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+

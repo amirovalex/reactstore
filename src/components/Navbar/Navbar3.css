@@ -29,6 +29,7 @@
 
 .part2 {
 	margin-right: 10px;
+	position: relative;
 }
 .part3 {
 	height: 100%;
@@ -39,18 +40,20 @@
 }
 
 .logo {
-	margin-left: 20px;
-	width:10%;
+	margin-left: 10px;
 	height: 60%;
+}
+
+.logo > img {
+	height:50px;
 }
 
 div.dropDown {
 	flex-direction: column;
-	height:20vh;
+	right: 0;
 	position:absolute;
-	margin-top: 15vh;
-	padding-left: 5px;
 	text-align: center;
+	bottom:calc(0px - 60%);
 }
 
 .dropDown div {
@@ -103,16 +106,10 @@ div.selec {
 
 @media only screen and (max-width: 425px) {
   span {
-    font-size:0.7rem;
+    font-size:0.9rem;
   }
   div.dropDown {
 
-  }
-}
-
-@media only screen and (max-width: 350px) {
-  span {
-    font-size:0.5rem;
   }
 }
 
