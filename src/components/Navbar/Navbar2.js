@@ -110,7 +110,7 @@ class Navbar extends React.Component {
                   style={{ display: droppedSignOut ? "flex" : "none" }}
                 >
                   <div
-                    className="signUser hover-bg-white-40"
+                    className="signUser"
                     onClick={() => {
                       onSignOut();
                       this.props.history.push("/");

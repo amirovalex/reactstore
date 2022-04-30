@@ -94,6 +94,11 @@ div.signUser {
 	padding-left: 11px;
 }
 
+div.signUser:hover {
+	background-color:rgba(255,255,255,0.3);
+
+}
+
 div.selec {
 	height:60%;
 }
