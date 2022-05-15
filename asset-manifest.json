@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/reactstore/static/css/main.906ec529.chunk.css",
+    "main.js": "/reactstore/static/js/main.285e0a5a.chunk.js",
+    "main.js.map": "/reactstore/static/js/main.285e0a5a.chunk.js.map",
+    "runtime-main.js": "/reactstore/static/js/runtime-main.13b25107.js",
+    "runtime-main.js.map": "/reactstore/static/js/runtime-main.13b25107.js.map",
+    "static/css/2.eb45ad44.chunk.css": "/reactstore/static/css/2.eb45ad44.chunk.css",
+    "static/js/2.c3ea047d.chunk.js": "/reactstore/static/js/2.c3ea047d.chunk.js",
+    "static/js/2.c3ea047d.chunk.js.map": "/reactstore/static/js/2.c3ea047d.chunk.js.map",
+    "index.html": "/reactstore/index.html",
+    "precache-manifest.eeb3e3170d07559ed17a7ec94af54619.js": "/reactstore/precache-manifest.eeb3e3170d07559ed17a7ec94af54619.js",
+    "service-worker.js": "/reactstore/service-worker.js",
+    "static/css/2.eb45ad44.chunk.css.map": "/reactstore/static/css/2.eb45ad44.chunk.css.map",
+    "static/css/main.906ec529.chunk.css.map": "/reactstore/static/css/main.906ec529.chunk.css.map",
+    "static/media/navLogo.png": "/reactstore/static/media/navLogo.0c01e5b4.png"
+  }
+}
