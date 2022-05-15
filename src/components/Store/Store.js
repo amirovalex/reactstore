@@ -64,7 +64,7 @@ class Store extends React.Component {
           <Switch>
             <Route
               exact
-              path={`/store/all`}
+              path={`/reactstore/store/all`}
               render={(props) => (
                 <Menu
                   {...props}
@@ -75,7 +75,7 @@ class Store extends React.Component {
             />
             <Route
               exact
-              path={`/store/:categoryId`}
+              path={`/reactstore/store/:categoryId`}
               render={(props) => (
                 <Menu
                   {...props}
@@ -89,7 +89,7 @@ class Store extends React.Component {
             <Switch>
               <Route
                 exact
-                path={`/store/all`}
+                path={`/reactstore/store/all`}
                 render={(props) => (
                   <ItemList
                     {...props}
@@ -102,7 +102,7 @@ class Store extends React.Component {
               />
               <Route
                 exact
-                path={`/store/:categoryId`}
+                path={`/reactstore/store/:categoryId`}
                 render={(props) => (
                   <CategoryPage
                     {...props}
@@ -120,7 +120,7 @@ class Store extends React.Component {
           <Switch>
             <Route
               exact
-              path={`/store/:categoryId/:itemId`}
+              path={`/reactstore/store/:categoryId/:itemId`}
               render={(props) =>
                 items[indexItem] && (
                   <ItemPage
@@ -142,7 +142,7 @@ class Store extends React.Component {
               }
             />
             <Route
-              path={`/store/all/:itemId`}
+              path={`/reactstore/store/all/:itemId`}
               render={(props) =>
                 items[indexItem] && (
                   <ItemPage

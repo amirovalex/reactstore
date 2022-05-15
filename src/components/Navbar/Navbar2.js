@@ -43,7 +43,7 @@ class Navbar extends React.Component {
           className="grow logo"
           onClick={() => {
             onRouteChange("home");
-            this.props.history.push("/");
+            this.props.history.push("/reactstore");
           }}
         >
           <img src={navLogo} />
@@ -55,7 +55,7 @@ class Navbar extends React.Component {
             onClick={() => {
               onRouteChange("store");
               onCategoryChange("all");
-              this.props.history.push("/store/all");
+              this.props.history.push("/reactstore/store/all");
               onShowGrid();
             }}
           >
@@ -65,7 +65,7 @@ class Navbar extends React.Component {
             className="selec hover-bg-white-20"
             onClick={() => {
               onRouteChange("about");
-              this.props.history.push("/about");
+              this.props.history.push("/reactstore/about");
             }}
           >
             <span href="#">About</span>
@@ -74,7 +74,7 @@ class Navbar extends React.Component {
             className="selec hover-bg-white-20"
             onClick={() => {
               onRouteChange("cart");
-              this.props.history.push("/cart");
+              this.props.history.push("/reactstore/cart");
             }}
           >
             <span href="#">Cart({allQuantity})</span>
@@ -84,7 +84,7 @@ class Navbar extends React.Component {
               className="selec hover-bg-white-20"
               onClick={() => {
                 onRouteChange("signin");
-                this.props.history.push("/signin");
+                this.props.history.push("/reactstore/signin");
               }}
             >
               <span href="#">Sign In</span>
@@ -113,7 +113,7 @@ class Navbar extends React.Component {
                     className="signUser"
                     onClick={() => {
                       onSignOut();
-                      this.props.history.push("/");
+                      this.props.history.push("/reactstore");
                       onUserReset();
                       onClearCart();
                     }}
@@ -144,7 +144,7 @@ class Navbar extends React.Component {
                     onClick={() => {
                       onRouteChange("admin");
                       onChangeAdminRoute("admin");
-                      this.props.history.push("/admin");
+                      this.props.history.push("/reactstore/admin");
                     }}
                   >
                     <span href="#">Admin Panel</span>
@@ -153,12 +153,12 @@ class Navbar extends React.Component {
                     className="hover-bg-white-40"
                     onClick={() => {
                       onSignOut();
-                      this.props.history.push("/");
+                      this.props.history.push("/reactstore");
                       onUserReset();
                       onClearCart();
                     }}
                   >
-                    <span href="">Sign Out</span>
+                    <span href="/reactstore">Sign Out</span>
                   </div>
                 </div>
               </div>

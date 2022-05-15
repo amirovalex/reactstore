@@ -167,7 +167,7 @@ class App extends Component {
           rel="stylesheet"
         />
         <Route
-          path="/"
+          path="/reactstore"
           render={(props) => (
             <Navbar
               {...props}
@@ -191,10 +191,10 @@ class App extends Component {
           )}
         />
         <Route
-          path="/admin"
+          path="/reactstore/admin"
           render={(props) =>
             user.isAdmin === false ? (
-              <Redirect to="/" />
+              <Redirect to="/reactstore" />
             ) : (
               <Admin
                 {...props}
@@ -221,7 +221,7 @@ class App extends Component {
         />
         <Route
           exact
-          path="/signin"
+          path="/reactstore/signin"
           render={(props) =>
             isSignedIn === false ? (
               <SignIn
@@ -232,13 +232,13 @@ class App extends Component {
                 onGetUserInfo={onGetUserInfo}
               />
             ) : (
-              <Redirect to="/" />
+              <Redirect to="/reactstore" />
             )
           }
         />
         <Route
           exact
-          path="/register"
+          path="/reactstore/register"
           render={(props) =>
             isSignedIn === false ? (
               <Register
@@ -248,13 +248,13 @@ class App extends Component {
                 onSignIn={onSignIn}
               />
             ) : (
-              <Redirect to="/" />
+              <Redirect to="/reactstore" />
             )
           }
         />
         <Route
           exact
-          path="/cart"
+          path="/reactstore/cart"
           render={(props) => (
             <Cart
               {...props}
@@ -271,7 +271,7 @@ class App extends Component {
         />
         <Route
           exact
-          path="/"
+          path="/reactstore"
           render={(props) => (
             <Main
               {...props}
@@ -281,7 +281,7 @@ class App extends Component {
           )}
         />
         <Route
-          path="/store"
+          path="/reactstore/store"
           render={(props) => (
             <Store
               {...props}
@@ -323,7 +323,11 @@ class App extends Component {
                   onCartPriceAdd={onCartPriceAdd}
                    />}
         /> */}
-        <Route exact path="/about" render={(props) => <About {...props} />} />
+        <Route
+          exact
+          path="/reactstore/about"
+          render={(props) => <About {...props} />}
+        />
       </div>
     );
   }
